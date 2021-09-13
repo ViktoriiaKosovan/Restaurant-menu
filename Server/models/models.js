@@ -2,13 +2,13 @@ const sequelize = require('../config/db');
 const { DataTypes } = require('sequelize');
 
 const Category = sequelize.define('categories', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true},
     category: { type: DataTypes.STRING, unique: true, allowNull: false },
     availability: { type: DataTypes.BOOLEAN, defaultValue: true } //allowNull:false ?
 });
 
 const Meal = sequelize.define('meals', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true},
     img: { type: DataTypes.STRING, allowNull: false },
     name: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING },
@@ -19,7 +19,7 @@ const Meal = sequelize.define('meals', {
 });
 
 const Info = sequelize.define('info', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true},
     address: { type: DataTypes.STRING },
     contacts: { type: DataTypes.STRING },
     wiFi: { type: DataTypes.STRING },

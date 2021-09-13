@@ -1,10 +1,11 @@
 const Router = require('express');
 const router = new Router();
+const infoControllers = require('../controllers/infoControllers');
 
-router.post('/',)
-router.get('/',)
-router.patch('/',)
-router.delete('/',)
+router.get('/', infoControllers.getAll);
+router.post('/', infoControllers.create);
+router.patch('/', infoControllers.edit);
+router.delete('/', infoControllers.delete);
 
 
 

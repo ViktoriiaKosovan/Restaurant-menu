@@ -1,10 +1,10 @@
-const sequelize = require('../db');
+const sequelize = require('../config/db');
 const { DataTypes } = require('sequelize');
 
 const Category = sequelize.define('categories', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     category: { type: DataTypes.STRING, unique: true, allowNull: false },
-    availability: { type: DataTypes.BOOLEAN } //allowNull:false ?
+    availability: { type: DataTypes.BOOLEAN, defaultValue: true } //allowNull:false ?
 });
 
 const Meal = sequelize.define('meals', {
@@ -14,7 +14,7 @@ const Meal = sequelize.define('meals', {
     description: { type: DataTypes.STRING },
     weight: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.STRING, allowNull: false },
-    availability: { type: DataTypes.BOOLEAN },
+    availability: { type: DataTypes.BOOLEAN, defaultValue: true },
     // category_id
 });
 

@@ -1,5 +1,5 @@
 const Router = require('express');
-const categoryRouter = require('./categoryRouter');
+const categoriesRouter = require('./categoriesRouter');
 const infoRouter = require('./infoRouter');
 const mealRouter = require('./mealRouter');
 
@@ -7,7 +7,7 @@ const mealRouter = require('./mealRouter');
 const router = new Router();
 
 
-router.use('/category', categoryRouter);
+router.use('/category', categoriesRouter);
 router.use('/meal', infoRouter);
 router.use('/info', mealRouter);
 

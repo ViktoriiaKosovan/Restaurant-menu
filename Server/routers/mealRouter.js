@@ -1,9 +1,13 @@
 const Router = require('express');
 const router = new Router();
-router.post('/',)
-router.get('/',)
-router.patch('/',)
-router.delete('/',)
+const mealController = require('../controllers/mealController');
+
+router.get('/', mealController.getAll);
+router.get('/?categoryId=[id]', mealController.getAll);//??
+
+router.post('/', mealController.create);
+router.patch('/:id', mealController.edit);
+router.delete('/:id', mealController.delete);
 
 
 

@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 
 const Category = sequelize.define('categories', {
     id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true},
-    category: { type: DataTypes.STRING, unique: true, allowNull: false },
+    title: { type: DataTypes.STRING, unique: true, allowNull: false },
     availability: { type: DataTypes.BOOLEAN, defaultValue: true } //allowNull:false ?
 });
 

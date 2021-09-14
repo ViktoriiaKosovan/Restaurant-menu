@@ -3,8 +3,8 @@ const handleError = require('../utils/handleError');
 
 
 class InfoController {
-      async getInfo(req, res) {
-         try {
+    async getInfo(req, res) {
+        try {
            const info = await Info.findAll();
            res.status(200).send({info});
           
@@ -15,28 +15,25 @@ class InfoController {
     
      async createInfo(req, res) {
        try {
-            let { address, contacts, wiFi } = req.body;
-         let newInfo = await Info.create({ address, contacts, wiFi } );
-            res.status(201).send(newInfo)
+         let { address, contacts, wiFi } = req.body;
+         if (!address || !contacts || !wiFi) throw Error;
+          let newInfo = await Info.create({ address, contacts, wiFi } );
+         res.status(201).send(newInfo);
             
         } catch (error) {
-            handleError(error, res, 500, 'Info did not create')
+            handleError(error, res, 'Info did not create')
 
         }
-         
      }
     
      async updateInfo(req, res) {
         try {
-            let { id } = req.body;
-          let count = await Info.update({ address:req.body.address, contacts:req.body.contacts, wiFi: req.body.wiFi }, { where: { id: id } });
-            if (count == 1) {
-                res.send({message: "Info was updated successfully."});
-            } else {
-                res.send({message: `Can not update info with id=${id}.`});
-      }
+          let { id, address, contacts, wiFi} = req.body;
+          if (!id) throw Error;
+          await Info.update({ address, contacts, wiFi }, { where: { id: id } });
+          res.status(200).send({message: "Info was updated successfully."});
         } catch (error) {
-            handleError(error, res, 500, `Error updating info with id=${id}`);
+          handleError(error, res, "Error updating info", 409);
         }
      }
     

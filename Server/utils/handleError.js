@@ -1,8 +1,6 @@
-const handleError = (err, res, code=500, info) => {
+const handleError = (err, res, info, code=500 ) => {
   const { message } = err;
-  console.log(err);
   res.status(code).send({
-    status: "error",
     message,
     messageInfo: info
   });

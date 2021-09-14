@@ -8,7 +8,7 @@ const router = new Router();
 
 
 router.use('/category', categoriesRouter);
-router.use('/meal', infoRouter);
-router.use('/info', mealRouter);
+router.use('/meal', mealRouter);
+router.use('/info', infoRouter);
 
 module.exports = router;

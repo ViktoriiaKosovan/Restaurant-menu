@@ -10,7 +10,7 @@ const Category = sequelize.define('categories', {
 const Meal = sequelize.define('meals', {
     id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true},
     img: { type: DataTypes.STRING, allowNull: false },
-    name: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
     description: { type: DataTypes.STRING },
     weight: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.STRING, allowNull: false },

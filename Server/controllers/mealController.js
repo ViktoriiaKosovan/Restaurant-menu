@@ -1,6 +1,6 @@
 const handleError = require('../utils/handleError');
 const { Meal } = require('../models/models');
-const { resultCodeSuccess, successMessage } = require('../constants/constants');
+const { resultCodeSuccess, successMessage, httpCodes } = require('../constants/constants');
 
 
 
@@ -9,7 +9,7 @@ const { resultCodeSuccess, successMessage } = require('../constants/constants');
             const id = req.params.id;
             if (!id) throw Error;
             let mealsByCategory = await Meal.findAll({ where: { categoryId: id } });
-            res.status(200).send({  statusCode: resultCodeSuccess, message: successMessage, mealsByCategory });
+            res.status(httpCodes.OK).send({  statusCode: resultCodeSuccess, message: successMessage, mealsByCategory });
         } catch (error) {
            handleError(res, error);
         }
@@ -19,7 +19,7 @@ const { resultCodeSuccess, successMessage } = require('../constants/constants');
        try {
            let { img, name, description, weight, price, categoryId } = req.body;
             await Meal.create({ img,name, description, weight, price, categoryId } );
-           res.status(201).send({ statusCode: resultCodeSuccess, message: successMessage });
+           res.status(httpCodes.CREATED).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
             handleError(res, error);
 
@@ -30,9 +30,9 @@ const { resultCodeSuccess, successMessage } = require('../constants/constants');
         try {
             let { id, img, name, description, weight, price, categoryId } = req.body;
             await Meal.update({ img, name, description, weight, price, categoryId } , { where: { id: id } });
-            res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
+            res.status(httpCodes.OK).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
-           handleError(res, error, 409);
+           handleError(res, error, httpCodes.UPDATE_ERROR);
         }
      }
     
@@ -41,7 +41,7 @@ const { resultCodeSuccess, successMessage } = require('../constants/constants');
             const id = req.params.id;
             if (!id) throw Error;
             await Meal.destroy({ where: { id: id } });
-            res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
+            res.status(httpCodes.OK).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
              handleError(res, error);
         }

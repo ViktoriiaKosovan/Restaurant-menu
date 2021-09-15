@@ -1,14 +1,15 @@
 const Joi = require('joi');
 
-const categoryCreateShema = Joi.object({
-  
-  title: Joi.string().min(4).max(30).required(),
-  
-});
 
-const categoryUpdateShema = Joi.object({
+const categoriesValidators = {
+  title: Joi.string().min(4).max(30).required(),
+  availability: Joi.boolean(),
+}
+
+const categoryCreateSchema = Joi.object({...categoriesValidators});
+
+const categoryUpdateSchema = Joi.object({
   id: Joi.string().guid({ version : 'uuidv4' }).required(),
-  title: Joi.string().min(6).max(30).required(),
-  
+  ...categoriesValidators
 });
-module.exports = {categoryCreateShema, categoryUpdateShema};
+module.exports = {categoryCreateSchema, categoryUpdateSchema};

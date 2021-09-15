@@ -1,39 +1,40 @@
 const { Info } = require('../models/models');
+const { resultCodeSuccess, successMessage } = require('../constants/constants');
 const handleError = require('../utils/handleError');
 
-
-class InfoController {
-    async getInfo(req, res) {
-        try {
-           const info = await Info.findAll();
-           res.status(200).send({info});
-          
-        } catch (error) {
-           handleError(error, res, 'Info not found')
-        }
-    }
-    
-     async createInfo(req, res) {
+  const createInfo= async (req, res) =>{
        try {
-         let { address, contacts, wiFi } = req.body;
-         if (!address || !contacts || !wiFi) throw Error;
-          let newInfo = await Info.create({ address, contacts, wiFi } );
-         res.status(201).send(newInfo);
+         await Info.create({ address:"", contacts:"", wiFi:"" } );
+         res.status(201).send({ statusCode: resultCodeSuccess, message: successMessage });
             
         } catch (error) {
-            handleError(error, res, 'Info did not create')
+            handleError(res, error);
 
         }
      }
+class InfoController {
+    async getInfo(req, res) {
+        try {
+            await Info.findAll();
+            res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
+          
+        } catch (error) {
+          handleError(res, error);
+        }
+    }
+    
+   
     
      async updateInfo(req, res) {
-        try {
+       try {
+         if (req.body.isNew) {
+          return createInfo(req, res)
+         }
           let { id, address, contacts, wiFi} = req.body;
-          if (!id) throw Error;
           await Info.update({ address, contacts, wiFi }, { where: { id: id } });
-          res.status(200).send({message: "Info was updated successfully."});
+          res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
-          handleError(error, res, "Error updating info", 409);
+          handleError(res, error, 409);
         }
      }
     

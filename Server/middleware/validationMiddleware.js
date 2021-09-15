@@ -1,16 +1,16 @@
-const Joi = require('joi'); 
+const Joi = require('joi');
+const { resultCodeFail }=require('../constants/constants')
 const validationMiddleware = (schema, property) => { 
   return (req, res, next) => { 
       const { error, value } = schema.validate(req.body);
-  console.log(error, value )
-  if (!error) { 
-    next(); 
-  } else { 
+      if (!error) { 
+          next(); 
+      } else {
+        console.log(error)
     const { details } = error; 
     const message = details.map(i => i.message).join(',');
- 
-    console.log("error", message); 
-   res.status(422).send({ error: message }) } 
+      
+   res.status(422).send({  statusCode: resultCodeFail, error: message }) } 
   } 
 } 
 module.exports = validationMiddleware;

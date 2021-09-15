@@ -1,55 +1,53 @@
 const handleError = require('../utils/handleError');
 const { Meal } = require('../models/models');
+const { resultCodeSuccess, successMessage } = require('../constants/constants');
 
 
 
-class MealController {
-    async getMealByCategory(req, res) {
+   const getMealByCategory = async (req, res) =>{
         try {
             const id = req.params.id;
             if (!id) throw Error;
             let mealsByCategory = await Meal.findAll({ where: { categoryId: id } });
-            res.status(200).send({ mealsByCategory });
+            res.status(200).send({  statusCode: resultCodeSuccess, message: successMessage, mealsByCategory });
         } catch (error) {
-             handleError(error, res, 'Meals not found')
+           handleError(res, error);
         }
     }
     
-     async createMeal(req, res) {
+    const  createMeal = async (req, res) =>{
        try {
-            let { img,name, description, weight, price, categoryId} = req.body;
-            let newMeal = await Meal.create({ img,name, description, weight, price, categoryId } );
-            res.status(201).send(newMeal)
-            
+           let { img, name, description, weight, price, categoryId } = req.body;
+            await Meal.create({ img,name, description, weight, price, categoryId } );
+           res.status(201).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
-            handleError(error, res, 'New meal did not create')
+            handleError(res, error);
 
         }
      }
     
-    async updateMeal(req, res) {
+   const updateMeal = async (req, res) => {
         try {
             let { id, img, name, description, weight, price, categoryId } = req.body;
-            if (!id) throw Error;
             await Meal.update({ img, name, description, weight, price, categoryId } , { where: { id: id } });
-                res.status(200).send({message: "Meal was updated successfully."});
+            res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
-            handleError(error, res, "Error updating meal", 409);
+           handleError(res, error, 409);
         }
      }
     
-    async deleteMeal(req, res) {
+   const deleteMeal = async (req, res) =>{
         try {
             const id = req.params.id;
             if (!id) throw Error;
             await Meal.destroy({ where: { id: id } });
-            res.status(200).send({ message: "Meal was deleted successfully." });
+            res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
-             handleError(error, res, "Error deleting meal ");
+             handleError(res, error);
         }
 
      }
 
-}
 
-module.exports = new MealController();
+
+module.exports = {getMealByCategory, createMeal, updateMeal, deleteMeal};

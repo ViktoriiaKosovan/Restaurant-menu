@@ -3,9 +3,8 @@ const { resultCodeSuccess, successMessage } = require('../constants/constants');
 const handleError = require('../utils/handleError');
 
 
-class CategoriesController {
    
-    async getCategories(req, res) {
+    const getCategories = async (req, res) => {
         try {
             let categories=await Category.findAll();
             res.status(200).send({ statusCode: resultCodeSuccess, categories });
@@ -16,10 +15,9 @@ class CategoriesController {
     }
     
     
-    async createCategory(req, res) {
+    const createCategory= async (req, res) => {
         try {
             let { title } = req.body;
-            if (!title) throw Error;
             await Category.create({ title });
             res.status(201).send({ statusCode: resultCodeSuccess, message: successMessage  })
         } catch (error) {
@@ -27,15 +25,14 @@ class CategoriesController {
         }
      }
 
-    async updateCategory(req, res) {
+    const updateCategory=async (req, res) => {
         try {
             let { id, title } = req.body;
-            if (!id) throw Error;
             await Category.update({title}, { where: { id: id } });
             res.status(200).send({statusCode: resultCodeSuccess, message: successMessage });
         } catch (error) {
             handleError(res, error, 409);
         }
     }
-}
-module.exports = new CategoriesController();
+
+module.exports = {getCategories, createCategory, updateCategory};

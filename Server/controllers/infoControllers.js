@@ -12,8 +12,8 @@ const handleError = require('../utils/handleError');
 
         }
      }
-class InfoController {
-    async getInfo(req, res) {
+
+    const getInfo = async (req, res) => {
         try {
             await Info.findAll();
             res.status(200).send({ statusCode: resultCodeSuccess, message: successMessage });
@@ -25,10 +25,10 @@ class InfoController {
     
    
     
-     async updateInfo(req, res) {
+     const updateInfo = async (req, res) => {
        try {
          if (req.body.isNew) {
-          return createInfo(req, res)
+           return createInfo(req, res);
          }
           let { id, address, contacts, wiFi} = req.body;
           await Info.update({ address, contacts, wiFi }, { where: { id: id } });
@@ -40,6 +40,6 @@ class InfoController {
     
     
 
-}
 
-module.exports = new InfoController();
+
+module.exports = {getInfo, updateInfo};

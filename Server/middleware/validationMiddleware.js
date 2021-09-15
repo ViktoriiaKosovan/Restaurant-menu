@@ -7,11 +7,15 @@ const validationMiddleware = (schema, property) => {
     if (!error) {
       next();
     } else {
-      const { details } = error;
-      const message = details.map((i) => i.message).join(",");
+      // const { details } = error;
+      // const message = details.map((i) => i.message).join(",");
+       let errorMessage = "";
+        for (const err of error.details) {
+            errorMessage += "" + err.path.join(" > ") + err.message.slice(err.message.lastIndexOf("\"") + 1) + "";
+        }
       res
         .status(httpCodes.VALIDATION_ERROR)
-        .send({ statusCode: resultCodeFail, error: message });
+        .send({ statusCode: resultCodeFail, error: errorMessage });
     }
   };
 };

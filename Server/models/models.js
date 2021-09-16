@@ -49,11 +49,10 @@ const Info = sequelize.define("info", {
     primaryKey: true,
   },
   address: {
-    type: DataTypes.STRING,
-    defaultValue: "м. Чернівці, вул. Тургенева 10",
+    type: DataTypes.STRING
   },
-  contacts: { type: DataTypes.STRING, defaultValue: "+380957620433" },
-  wiFi: { type: DataTypes.STRING, defaultValue: "Leo1603nard" },
+  contacts: { type: DataTypes.STRING },
+  wiFi: { type: DataTypes.STRING },
 });
 
 Category.hasMany(Meal);

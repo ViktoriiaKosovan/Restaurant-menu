@@ -19,10 +19,10 @@ const createInfo = async (req, res) => {
 
 const getInfo = async (req, res) => {
   try {
-    await Info.findAll();
+    let info=await Info.findAll();
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({ statusCode: resultCodeSuccess, message: successMessage, info });
   } catch (error) {
     handleError(res, error);
   }

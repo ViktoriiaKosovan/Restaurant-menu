@@ -1,0 +1,28 @@
+<header class="header">
+    <div class="manager-btn">
+        <button class="btn">
+        <a href="#">{{managerBtn}}</a>
+        </button>
+    </div>
+    <div class="title">
+        <h1 class="title_name">{{title}}</h1>
+        <h3 class="title_slogan">{{slogan}}</h3>
+    </div>
+	<nav class="navbar">
+		<ul class="categories-list" 
+            [ngClass]="{
+                show: menuToggle, 
+                hide:!menuToggle}">
+				<li class="category_item"><a href="#">SALADS</a></li>
+				<li class="category_item"><a href="#">MAIN</a></li>
+				<li class="category_item"><a href="#">DESSERTS</a></li>
+				<li class="category_item"><a href="#">DRINKS</a></li>
+			</ul>
+            <div class="menu" (click)="menuToggle=!menuToggle">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+		</nav>
+       
+</header>

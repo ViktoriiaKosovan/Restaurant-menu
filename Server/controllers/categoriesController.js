@@ -10,7 +10,7 @@ const getCategories = async (req, res) => {
     let categories = await Category.findAll();
     res
       .status(httpCodes.OK)
-      .send({ categories });
+      .send(categories );
   } catch (error) {
     handleError(res, error);
   }

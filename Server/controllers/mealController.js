@@ -11,10 +11,7 @@ const getMealByCategory = async (req, res) => {
     let mealsByCategory = await Meal.findAll({ where: { categoryId: id, availability:true } });
     res
       .status(httpCodes.OK)
-      .send({
-        message: successMessage,
-        mealsByCategory,
-      });
+      .send(mealsByCategory);
   } catch (error) {
     handleError(res, error);
   }

@@ -13,10 +13,7 @@
             [ngClass]="{
                 show: menuToggle, 
                 hide:!menuToggle}">
-				<li class="category_item"><a href="#">SALADS</a></li>
-				<li class="category_item"><a href="#">MAIN</a></li>
-				<li class="category_item"><a href="#">DESSERTS</a></li>
-				<li class="category_item"><a href="#">DRINKS</a></li>
+				<li class="category_item" *ngFor="let category of categories"><a href="#">{{category.title}}</a></li>
 			</ul>
             <div class="menu" (click)="menuToggle=!menuToggle">
                 <div class="menu-line"></div>

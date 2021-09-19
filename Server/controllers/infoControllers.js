@@ -1,6 +1,5 @@
 const { Info } = require("../models/models");
 const {
-  resultCodeSuccess,
   successMessage,
   httpCodes,
 } = require("../constants/constants");
@@ -11,7 +10,7 @@ const createInfo = async (req, res) => {
     await Info.create({ address: "", contacts: "", wiFi: "" });
     res
       .status(httpCodes.CREATED)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({ message: successMessage });
   } catch (error) {
     handleError(res, error);
   }
@@ -22,7 +21,7 @@ const getInfo = async (req, res) => {
     let info=await Info.findAll();
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, message: successMessage, info });
+      .send({ message: successMessage, info });
   } catch (error) {
     handleError(res, error);
   }
@@ -37,7 +36,7 @@ const updateInfo = async (req, res) => {
     await Info.update({ address, contacts, wiFi }, { where: { id: id } });
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({ message: successMessage });
   } catch (error) {
     handleError(res, error, httpCodes.UPDATE_ERROR);
   }

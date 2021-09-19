@@ -1,7 +1,6 @@
 const handleError = require("../utils/handleError");
 const { Meal } = require("../models/models");
 const {
-  resultCodeSuccess,
   successMessage,
   httpCodes,
 } = require("../constants/constants");
@@ -13,7 +12,6 @@ const getMealByCategory = async (req, res) => {
     res
       .status(httpCodes.OK)
       .send({
-        statusCode: resultCodeSuccess,
         message: successMessage,
         mealsByCategory,
       });
@@ -28,7 +26,7 @@ const createMeal = async (req, res) => {
     await Meal.create({ img, name, description, weight, price, categoryId });
     res
       .status(httpCodes.CREATED)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({  message: successMessage });
   } catch (error) {
     handleError(res, error);
   }
@@ -43,7 +41,7 @@ const updateMeal = async (req, res) => {
     );
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({  message: successMessage });
   } catch (error) {
     handleError(res, error, httpCodes.UPDATE_ERROR);
   }
@@ -55,7 +53,7 @@ const deleteMeal = async (req, res) => {
     await Meal.destroy({ where: { id: id } });
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({ message: successMessage });
   } catch (error) {
     handleError(res, error);
   }

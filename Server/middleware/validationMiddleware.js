@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const { resultCodeFail, httpCodes } = require("../constants/constants");
+const { httpCodes } = require("../constants/constants");
 
 const validationMiddleware = (schema, property) => {
   return (req, res, next) => {
@@ -15,7 +15,7 @@ const validationMiddleware = (schema, property) => {
         }
       res
         .status(httpCodes.VALIDATION_ERROR)
-        .send({ statusCode: resultCodeFail, error: errorMessage });
+        .send({  error: errorMessage });
     }
   };
 };

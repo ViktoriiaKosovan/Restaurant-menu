@@ -1,6 +1,5 @@
 const { Category } = require("../models/models");
 const {
-  resultCodeSuccess,
   successMessage,
   httpCodes,
 } = require("../constants/constants");
@@ -11,7 +10,7 @@ const getCategories = async (req, res) => {
     let categories = await Category.findAll();
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, categories });
+      .send({ categories });
   } catch (error) {
     handleError(res, error);
   }
@@ -23,7 +22,7 @@ const createCategory = async (req, res) => {
     await Category.create({ title });
     res
       .status(httpCodes.CREATED)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({message: successMessage });
   } catch (error) {
     handleError(res, error);
   }
@@ -35,7 +34,7 @@ const updateCategory = async (req, res) => {
     await Category.update({ title }, { where: { id: id } });
     res
       .status(httpCodes.OK)
-      .send({ statusCode: resultCodeSuccess, message: successMessage });
+      .send({ message: successMessage });
   } catch (error) {
     handleError(res, error, httpCodes.UPDATE_ERROR);
   }

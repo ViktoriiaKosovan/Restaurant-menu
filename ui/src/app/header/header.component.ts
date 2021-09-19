@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.http.get<Category[]>('http://localhost:5000/api/category')
             .subscribe(categories => {
-                console.log(categories);
                 this.categories = categories;
             })
     }

@@ -13,6 +13,7 @@
             [ngClass]="{
                 show: menuToggle, 
                 hide:!menuToggle}">
+                
 				<li class="category_item" *ngFor="let category of categories"><a [routerLink]="['/', category.id]">{{category.title}}</a></li>
 			</ul>
             <div class="menu" (click)="menuToggle=!menuToggle">

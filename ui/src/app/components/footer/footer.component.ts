@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Info, InfoService } from '../services/info.service';
+import { Info, InfoService } from '../../services/info.service';
 
 
 

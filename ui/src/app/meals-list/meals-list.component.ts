@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Meals,MealsService } from './meals-list.service';
+import { Meals,MealsService } from '../services/meals-list.service';
 
 
 @Component({
@@ -21,7 +21,6 @@ export class MealsListComponent implements OnInit {
                 this.meals = meals;
             })
         })
-       
     }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, HeaderService } from './header.service';
+import { Category, HeaderService } from '../services/header.service';
 
 
 

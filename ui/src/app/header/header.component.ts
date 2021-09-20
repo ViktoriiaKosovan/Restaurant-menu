@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, HeaderService } from '../services/header.service';
+import { Category, CategoriesService } from '../services/categories.service';
 
 
 
@@ -15,9 +15,9 @@ export class HeaderComponent implements OnInit {
     slogan: string = "Taste the perfection!";
     managerBtn: string = "MANAGE";
     categories: Category[] = [];
-    constructor(private headerService: HeaderService) { }
+    constructor(private categoriesService: CategoriesService) { }
     ngOnInit() {
-        this.headerService.getAllCategories()
+        this.categoriesService.getAllCategories()
         .subscribe(categories => {
                 this.categories = categories;
             })

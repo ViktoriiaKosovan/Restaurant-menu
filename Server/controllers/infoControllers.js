@@ -21,7 +21,7 @@ const getInfo = async (req, res) => {
     let info=await Info.findAll();
     res
       .status(httpCodes.OK)
-      .send( info );
+      .send(info);
   } catch (error) {
     handleError(res, error);
   }

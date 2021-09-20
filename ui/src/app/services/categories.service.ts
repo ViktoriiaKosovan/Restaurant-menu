@@ -9,7 +9,7 @@ export interface Category {
 }
 
 @Injectable({providedIn: "root"})
-export class HeaderService {
+export class CategoriesService {
     constructor(private http: HttpClient) { }
     
     getAllCategories(): Observable<Category[]> {

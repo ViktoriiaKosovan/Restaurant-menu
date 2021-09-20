@@ -1,0 +1,11 @@
+<div class="container">
+      <div class="content-section">
+        <div class="card" *ngFor="let meal of meals">
+          <img src="{{meal.img}}" alt="">
+          <h4>{{meal.name}}</h4>
+          <p>{{meal.description}}</p>
+          <div class="price"><span>{{meal.price}}$</span></div>
+        </div>
+      </div>
+    
+   

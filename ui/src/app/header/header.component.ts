@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Category, HeaderService } from './header.service';
 
-export interface Category {
-    id?: string,
-    title: string,
-    availability: boolean
-}
+
 
 @Component({
     selector: "app-header",
@@ -19,10 +16,10 @@ export class HeaderComponent implements OnInit {
     slogan: string = "Taste the perfection!";
     managerBtn: string = "MANAGE";
     categories: Category[] = [];
-    constructor(private http: HttpClient) { }
+    constructor(private headerService: HeaderService) { }
     ngOnInit() {
-        this.http.get<Category[]>('http://localhost:5000/api/category')
-            .subscribe(categories => {
+        this.headerService.getAllCategories()
+        .subscribe(categories => {
                 this.categories = categories;
             })
     }

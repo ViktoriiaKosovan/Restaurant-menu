@@ -6,3 +6,18 @@ footer{
     justify-content: space-around;
     align-items: center;
 }
+
+.item-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-info_img {
+   margin-right: 10px;;
+}
+
+img{
+    width:30px;
+    height: 30px;
+  
+}

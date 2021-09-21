@@ -22,6 +22,7 @@ export class MealsListComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
             if (!params.id) {
+                console.log(params.id)
                 this.categoryService.getAllCategories()
                     .subscribe(categories => {
                         this.firstCategory = categories[0];

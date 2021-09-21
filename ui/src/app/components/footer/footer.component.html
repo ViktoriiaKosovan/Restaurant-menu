@@ -1,7 +1,16 @@
 <footer *ngFor="let i of info">
-    <div>
-    <div class="address">{{i.address}}</div>
-    <div class="contacts">{{i.contacts}}</div>
+    
+    <div class="item-info">
+        <div class="item-info_img"><img src="../../../assets/images/location.png" alt=""></div>
+        <div>{{i.address}}</div>
+        </div>
+    <div class="item-info ">
+        <div class="item-info_img"><img src="../../../assets/images/phone.png" alt=""></div>
+        <div>{{i.contacts}}</div>
     </div>
-    <div class="wi-fi">{{i.wiFi}}</div>
+    
+    <div class="item-info">
+        <div class="item-info_img"><img src="../../../assets/images/wiFi.png" alt=""></div>
+        <div>{{i.wiFi}}</div>
+    </div>
 </footer>

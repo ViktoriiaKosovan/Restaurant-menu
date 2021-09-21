@@ -1,35 +1,29 @@
-
-
-
-/* .manager-btn {
-  text-align: end;
-  margin: 30px 30px 0 0;
+.navbar {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
 }
 
-.btn {
+.category_item  {
   all: unset;
   line-height: 50px;
   height: 50px;
   width: 180px;
   text-align: center;
   cursor: pointer;
-  color: #FFF;
   transition: all 0.3s;
   position: relative;
-
-
-
+  display: inline-block;
+  font-weight: 600;
 }
 
-.btn a {
+.category_item  a {
   text-decoration: none;
-  color: white;
+  color: rgb(26, 40, 41);
   transition: all 0.3s;
-
-
 }
 
-.btn::before {
+.category_item::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -43,21 +37,21 @@
   border-bottom-width: 1px;
   border-top-style: solid;
   border-bottom-style: solid;
-  border-top-color: rgba(255, 255, 255, 0.5);
-  border-bottom-color: rgba(255, 255, 255, 0.5);
+  border-top-color: rgba(7, 7, 7, 0.5);
+  border-bottom-color: rgba(7, 7, 7, 0.5);
   transform: scale(0.1, 1);
 }
 
-.btn:hover a {
+.category_item:hover a {
   letter-spacing: 2px;
 }
 
-.btn:hover::before {
+.category_item:hover::before {
   opacity: 1;
   transform: scale(1, 1);
 }
 
-.btn::after {
+.category_item::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -69,48 +63,9 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.btn:hover::after {
+.category_item:hover::after {
   opacity: 0;
   transform: scale(0.1, 1);
-}
-
-.title {
-  font-family: 'Grechen Fuemen', cursive;
-  font-size: 40px;
-} */
-.navbar{
-margin-top: 20px;
-text-align: center;
-width: 100%;
-
-}
-
-.categories-list {
-    list-style-type: none;
-}
-
-
-
-.categories-list .category_item {
-    text-decoration: none;
-    font-weight: 700;
-    display:inline-block;
-    padding: 20px 10px;
-}
-
-
-
-.navbar a{
-    text-decoration: none;
-    color:rgb(19, 17, 17);
-}
-
-.navbar a:hover{
-color:violet;
-}
-
-.logo{
-    height: 90px;
 }
 
 .menu{
@@ -134,18 +89,12 @@ margin-bottom: 4px;
     right:15px;
     top:15px;
 }
-.navbar .logo-container {
-width:100%;
-}
 
 .categories-list .category_item{
 display: block;
 border-top: 1px solid white;
 }
-.logo{
-margin-top: 10px;
-margin-left:10px;
-}
+
 
 .show {
 display: block;

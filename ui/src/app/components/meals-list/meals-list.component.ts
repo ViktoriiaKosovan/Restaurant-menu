@@ -1,8 +1,7 @@
-
 import { CategoriesService } from './../../services/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Meals,MealsService } from '../../services/meals-list.service';
+import { Meals,MealsService } from '../../services/meals.service';
 
 
 @Component({
@@ -21,23 +20,21 @@ export class MealsListComponent implements OnInit {
         
      }
     ngOnInit(): void {
-       
-      
         this.route.params.subscribe((params: Params) => {
             if (!params.id) {
                 this.categoryService.getAllCategories()
                     .subscribe(categories => {
-                    this.firstCategory = categories[0];
-                    this.mealsService.getAllMealsByCategory(this.firstCategory.id)
-                 .subscribe(meals => {
-                this.meals = meals;
-            })
+                        this.firstCategory = categories[0];
+                        this.mealsService.getAllMealsByCategory(this.firstCategory.id)
+                            .subscribe(meals => {
+                                this.meals = meals;
+                            })
                     })
             } else {
-                 this.mealsService.getAllMealsByCategory(params.id)
-            .subscribe(meals => {
-                this.meals = meals;
-            })
+                this.mealsService.getAllMealsByCategory(params.id)
+                    .subscribe(meals => {
+                        this.meals = meals;
+                    })
             }
            
         })

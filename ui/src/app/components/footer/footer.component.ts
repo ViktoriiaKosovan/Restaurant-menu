@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Info, InfoService } from '../../services/info.service';
 
-
-
-
 @Component({
     selector: "app-footer",
     templateUrl: "./footer.component.html",

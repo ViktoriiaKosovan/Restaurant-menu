@@ -11,10 +11,5 @@ export class HeaderComponent {
   slogan: string = "Taste the perfection!";
   managerBtn: string = "MANAGE";
   constructor(private router: Router) { }
-   
-  onClick() {
-     this.router.navigateByUrl('/manage');
-  }
-
     
 }

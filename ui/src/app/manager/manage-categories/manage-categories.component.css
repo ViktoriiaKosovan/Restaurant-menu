@@ -1,0 +1,21 @@
+
+
+.categories-list{
+    display:flex;
+    list-style-type: none;
+    justify-content: center;
+    
+}
+
+.form-update-category,
+.category-list_item {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+input.ng-valid {
+  border: 1px solid green;
+}

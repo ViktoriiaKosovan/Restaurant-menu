@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CategoriesService, Category } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-manage-categories',
@@ -7,9 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCategoriesComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+  categories: Category[] = [];
+  category: Category | undefined;
 
-  ngOnInit(): void {
+  constructor(private categoriesService: CategoriesService) {
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      availability: new FormControl()
+  });
+  }
+
+  ngOnInit() {
+    
+     this.categoriesService.getAllCategories()
+       .subscribe(categories => {
+          this.categories = categories;
+            })
+  }
+  submit() {
+    let category: Category = {
+      title: this.form.value.title,
+      availability: !!this.form.value.availability
+    }
+    this.categoriesService.addCategory(category)
+      .subscribe(() => {
+        this.categoriesService.getAllCategories()
+       .subscribe(categories => {
+          this.categories = categories;
+            })
+        this.form.reset();
+      })
   }
 
 }

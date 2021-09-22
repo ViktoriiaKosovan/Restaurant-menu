@@ -1,1 +1,19 @@
-<p>manage-categories works!</p>
+<ul class="categories-list"  >
+    <li class="category-list_item">ADD CATEGORY</li>
+     <li class="category-list_item" *ngFor="let category of categories">{{category.title}}</li>
+</ul>
+<form class="form-update-category" [formGroup]="form" (ngSubmit)='submit()'>
+  <input type="text"  placeholder="Enter category title" formControlName="title">
+  <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
+<small *ngIf="form.controls.title.errors?.required">Title field is required</small>
+<small *ngIf="form.controls.title.errors?.maxlength">Title field length should be less than 30 symbols</small>
+
+  </div>
+    <div>Availability  <input type="checkbox" formControlName="availability" checked> </div>
+  <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button">Cancel</button>
+
+
+
+
+

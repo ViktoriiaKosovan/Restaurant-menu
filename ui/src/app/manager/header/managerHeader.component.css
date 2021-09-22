@@ -1,0 +1,73 @@
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(43, 42, 42);
+}
+
+.manager-btn {
+  align-self: flex-end;
+  margin: 20px;
+}
+.btn {
+  all: unset;
+}
+
+.btn a,
+.edit-list_item a {
+  text-decoration: none;
+  color: white;
+}
+.edit-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.edit-list .edit-list_item {
+margin:0 30px 15px 0;
+}
+
+.menu {
+  display: none;
+}
+
+.menu-line {
+  width: 20px;
+  height: 3px;
+  background-color: white;
+  margin-bottom: 4px;
+}
+
+@media all and (max-width:480px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .menu {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+
+  .navbar .logo-container {
+    width: 100%;
+  }
+
+  .edit-list.edit-list_item {
+    display: block;
+    border-top: 1px solid white;
+  }
+
+  .show {
+    display: block;
+    list-style-type: none;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .hide {
+    display: none;
+  }
+}

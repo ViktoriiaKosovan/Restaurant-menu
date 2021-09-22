@@ -1,0 +1,27 @@
+
+<header>
+   <div class="manager-btn">
+        <button class="btn"  >
+        <a [routerLink]="['/']">Go to the client page</a>
+        </button>
+    </div>
+    <nav class="navbar">
+		<ul class="edit-list" 
+            [ngClass]="{
+                show: menuToggle, 
+                hide:!menuToggle}">
+				<li class="edit-list_item" ><a href="#">Categories</a></li>
+                <li class="edit-list_item" ><a a href="#">Meals</a></li>
+                <li class="edit-list_item" ><a a href="#">Info</a></li>
+			</ul>
+            <div class="menu" (click)="menuToggle=!menuToggle">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+		</nav>
+       
+    </header>
+<main>
+
+</main>

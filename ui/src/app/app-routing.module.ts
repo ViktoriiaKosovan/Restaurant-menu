@@ -2,7 +2,7 @@ import { ManagerLayoutComponent } from './shared/layouts/manager-layout/manager-
 import { ClientLayoutComponent } from './shared/layouts/client-layout/client-layout.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { MealsListComponent } from "./components/meals-list/meals-list.component";
+import { MealsListComponent } from "./client/meals-list/meals-list.component";
 
 
 const routes: Routes = [

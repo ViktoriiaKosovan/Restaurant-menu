@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-manager',
-  templateUrl: './managerHeader.component.html',
-  styleUrls: ['./managerHeader.component.css']
+  selector: 'app-manage-header',
+  templateUrl: './manage-header.component.html',
+  styleUrls: ['./manage-header.component.css']
 })
 export class ManageComponent implements OnInit {
    menuToggle: boolean = false;

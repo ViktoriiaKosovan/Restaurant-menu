@@ -19,8 +19,12 @@ const getMealByCategory = async (req, res) => {
 
 const createMeal = async (req, res) => {
   try {
-    let { img, name, description, weight, price, categoryId } = req.body;
-    await Meal.create({ img, name, description, weight, price, categoryId });
+    let { img, name, description, weight, price, availability, categoryId } = req.body;
+    if (availability === "false") {
+      availability = false;
+      return availability;
+    }
+    await Meal.create({ img, name, description, weight, price, availability, categoryId });
     res
       .status(httpCodes.CREATED)
       .send({  message: successMessage });
@@ -31,9 +35,13 @@ const createMeal = async (req, res) => {
 
 const updateMeal = async (req, res) => {
   try {
-    let { id, img, name, description, weight, price, categoryId } = req.body;
+    let { id, img, name, description, weight, price, categoryId, availability } = req.body;
+    if (availability === "false") {
+      availability = false;
+      return availability;
+    }
     await Meal.update(
-      { img, name, description, weight, price, categoryId },
+      { img, name, description, weight, price, availability, categoryId },
       { where: { id: id } }
     );
     res

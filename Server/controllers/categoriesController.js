@@ -30,8 +30,12 @@ const getCategories = async (req, res) => {
 
 const createCategory = async (req, res) => {
   try {
-    let { title } = req.body;
-    await Category.create({ title });
+    let { title, availability } = req.body;
+    if (availability === "false") {
+      availability = false;
+      return availability;
+    }
+    await Category.create({ title, availability });
     res
       .status(httpCodes.CREATED)
       .send({message: successMessage });
@@ -42,8 +46,12 @@ const createCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   try {
-    let { id, title } = req.body;
-    await Category.update({ title }, { where: { id: id } });
+    let { id, title, availability } = req.body;
+    if (availability === "false") {
+      availability = false;
+      return availability;
+    }
+    await Category.update({ title,availability }, { where: { id: id } });
     res
       .status(httpCodes.OK)
       .send({ message: successMessage });

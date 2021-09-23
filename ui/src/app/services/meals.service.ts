@@ -17,7 +17,7 @@ export class MealsService {
     constructor(private http: HttpClient) { }
     
     getAllMealsByCategory(id: string): Observable<Meals[]> {
-       return this.http.get<Meals[]>(`http://localhost:5000/api/meal/${id}`)
+       return this.http.get<Meals[]>(`http://localhost:5000/api/meal/category/${id}`)
     }
     getAllMeals(): Observable<Meals[]> {
        return this.http.get<Meals[]>(`http://localhost:5000/api/meal/`)

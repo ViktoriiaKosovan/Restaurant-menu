@@ -1,16 +1,12 @@
-
-
-.categories-list{
-    display:flex;
-    list-style-type: none;
-    justify-content: center;
-    
+.category-container_add{
+display:flex;
+justify-content: space-around;
+    margin-top:20px;
 }
+.category-form{
+    display:flex;
+    justify-content: space-around;
 
-.form-update-category,
-.category-list_item {
-    margin-left: 20px;
-    margin-top: 20px;
 }
 input.ng-invalid.ng-touched{
     border: 1px solid red;
@@ -19,3 +15,11 @@ input.ng-invalid.ng-touched{
 input.ng-valid {
   border: 1px solid green;
 }
+
+.show{
+    display:flex;
+}
+.hide{
+    display: none;
+}
+

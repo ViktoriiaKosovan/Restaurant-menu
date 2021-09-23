@@ -14,6 +14,7 @@ import { ManagerLayoutComponent } from './shared/layouts/manager-layout/manager-
 import { ManageCategoriesComponent } from './manager/manage-categories/manage-categories.component';
 import { ManageMealsComponent } from './manager/manage-meals/manage-meals.component';
 import { ManageInfoComponent } from './manager/manage-info/manage-info.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ManageInfoComponent } from './manager/manage-info/manage-info.component
     ManagerLayoutComponent,
     ManageCategoriesComponent,
     ManageMealsComponent,
-    ManageInfoComponent
+    ManageInfoComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

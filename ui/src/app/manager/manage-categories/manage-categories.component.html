@@ -1,6 +1,5 @@
 <div class="category-container">
-  <div class="category-container_add">
-  <form class="category-form " [formGroup]="formAdd" (ngSubmit)='submitAdd()' [ngClass]="{show: showFormAdd, hide: !showFormAdd}">
+  <form class="category-form " [formGroup]="formAdd" (ngSubmit)='submitAdd()'>
   <div class="category-form_title"><input type="text"  placeholder="Enter category title" formControlName="title"></div>
   <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
 <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
@@ -8,18 +7,14 @@
   </div>
   <div><input type="checkbox" id="availability" formControlName="availability" checked> 
    <label for="availability"> Availability</label></div>
- <div > <button type="submit" [disabled]="formAdd.invalid" class="sbm-btn">Save</button>
-    <button type="button" >Cancel</button></div>
+ <div > <button type="submit" [disabled]="formAdd.invalid && formAdd.touched" class="sbm-btn">Add category</button></div>
+   
     </form>
-    <div><button (click)="showAddForm()">ADD CATEGORY</button></div>
-     </div>
+    
 
 
-<ul class="categories-list"  >
-     <li  class="category-list_item" *ngFor="let category of categories" (click)="showEditForm(category.id)" >
-       {{category.title}}
-    </li>
-     <form class="category-form" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" [formGroup]="form" (ngSubmit)='submit()'>
+
+  <form class="category-form" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" [formGroup]="form" (ngSubmit)='submit()'>
   <div class="category-form_title"><input type="text"   placeholder="Enter category title" formControlName="title"></div>
   <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
 <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
@@ -28,11 +23,25 @@
   <div><input type="checkbox" id="availability" formControlName="availability" > 
    <label for="availability"> Availability</label></div>
  <div> <button type="submit" [disabled]="form.invalid" class="sbm-btn">Save</button>
-    <button type="button">Cancel</button></div>
+    <button type="button" (click)="hideEditForm()">Cancel</button></div>
     </form>
+    
+<ul class="categories-list"  >
+  <input type="text" [(ngModel)]="search">
+     <li  class="category-list_item" *ngFor="let category of categories | filter:search"  >
+       <div>{{category.title}}</div>
+       <div>{{category.availability}}</div>
+       <button (click)="showEditForm(category.id)">edit</button>
+    </li>
 
 </ul>
+
     </div>
+
+
+  
+ 
+   
 
 
 

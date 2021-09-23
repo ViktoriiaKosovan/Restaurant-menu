@@ -14,9 +14,9 @@ export class ManageCategoriesComponent implements OnInit {
   categories: Category[] = [];
   category: Category | undefined;
   showFormEdit: boolean = false;
-  showFormAdd: boolean = false;
+  editMode: boolean = false;
   id: string | undefined;
- 
+  search: string = '';
 
   constructor(private categoriesService: CategoriesService) {
     this.formAdd = new FormGroup({
@@ -36,11 +36,12 @@ export class ManageCategoriesComponent implements OnInit {
           this.categories = categories;
             })
   }
- 
- showAddForm():void {
-    this.showFormAdd = true;
-  }
-  showEditForm(categoryId: string|undefined):void {
+  hideEditForm() {
+   this.showFormEdit = false;
+ }
+
+  showEditForm(categoryId: string | undefined): void {
+    
     this.id = categoryId;
     this.categoriesService.getCategoryById(this.id)
       .subscribe(category => {
@@ -59,9 +60,10 @@ export class ManageCategoriesComponent implements OnInit {
     }
     this.categoriesService.addCategory(category)
       .subscribe(() => {
+        console.log(category);
         this.categoriesService.getAllCategories()
           .subscribe(categories => {
-            console.log(categories);
+            
           this.categories = categories;
             })
         this.formAdd.reset();

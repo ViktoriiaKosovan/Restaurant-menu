@@ -5,6 +5,18 @@ const {
 } = require("../constants/constants");
 const handleError = require("../utils/handleError");
 
+const getCategoryById = async (req, res) => {
+  try {
+    const id = req.params.id;
+   let category= await Category.findOne({ where: { id: id } });
+    res
+      .status(httpCodes.OK)
+      .send(category);
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
 const getCategories = async (req, res) => {
   try {
     let categories = await Category.findAll();
@@ -40,4 +52,4 @@ const updateCategory = async (req, res) => {
   }
 };
 
-module.exports = { getCategories, createCategory, updateCategory };
+module.exports = { getCategories, createCategory, updateCategory, getCategoryById };

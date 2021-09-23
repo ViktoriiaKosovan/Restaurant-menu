@@ -12,7 +12,7 @@ const {
 } = require("./schemas/mealsSchemas");
 const validationMiddleware = require("../middleware/validationMiddleware");
 
-router.get("/:id", getMealByCategory);
+router.get("/category/:id", getMealByCategory);
 router.post("/", validationMiddleware(mealCreateSchema), createMeal);
 router.patch("/", validationMiddleware(mealUpdateSchema), updateMeal);
 router.delete("/:id", deleteMeal);

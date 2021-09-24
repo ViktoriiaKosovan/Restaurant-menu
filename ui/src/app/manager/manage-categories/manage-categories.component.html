@@ -25,16 +25,24 @@
  <div> <button type="submit" [disabled]="form.invalid" class="sbm-btn">Save</button>
     <button type="button" (click)="hideEditForm()">Cancel</button></div>
     </form>
-    
-<ul class="categories-list"  >
-  <input type="text" [(ngModel)]="search">
-     <li  class="category-list_item" *ngFor="let category of categories | filter:search"  >
-       <div>{{category.title}}</div>
-       <div>{{category.availability}}</div>
-       <button (click)="showEditForm(category.id)">edit</button>
-    </li>
 
-</ul>
+<input class="search-input" type="text" [(ngModel)]="search" placeholder="Search...">
+<table>
+  <thead>
+    <tr  >
+      <th scope="col">Title</th>
+      <th scope="col">Availability</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories | filter:search">
+      <td data-label="Title">{{category.title}}</td>
+      <td data-label="Availability">{{category.availability}}</td>
+      <td data-label="Edit"><button (click)="showEditForm(category.id)">edit</button></td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
 

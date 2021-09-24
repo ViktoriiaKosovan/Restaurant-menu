@@ -5,6 +5,19 @@ const {
   httpCodes,
 } = require("../constants/constants");
 
+
+const getAllMeals=async (req, res) => {
+  try {
+    
+    let meals = await Meal.findAll();
+    res
+      .status(httpCodes.OK)
+      .send(meals);
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
 const getMealByCategory = async (req, res) => {
   try {
     const id = req.params.id;
@@ -64,4 +77,4 @@ const deleteMeal = async (req, res) => {
   }
 };
 
-module.exports = { getMealByCategory, createMeal, updateMeal, deleteMeal };
+module.exports = { getAllMeals, getMealByCategory, createMeal, updateMeal, deleteMeal };

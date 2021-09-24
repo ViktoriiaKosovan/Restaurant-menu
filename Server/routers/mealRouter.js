@@ -5,6 +5,7 @@ const {
   createMeal,
   updateMeal,
   deleteMeal,
+  getAllMeals
 } = require("../controllers/mealController");
 const {
   mealCreateSchema,
@@ -12,6 +13,7 @@ const {
 } = require("./schemas/mealsSchemas");
 const validationMiddleware = require("../middleware/validationMiddleware");
 
+router.get("/", getAllMeals);
 router.get("/category/:id", getMealByCategory);
 router.post("/", validationMiddleware(mealCreateSchema), createMeal);
 router.patch("/", validationMiddleware(mealUpdateSchema), updateMeal);

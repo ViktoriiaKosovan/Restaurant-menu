@@ -6,7 +6,7 @@ const mealRouter = require("./mealRouter");
 const router = new Router();
 
 router.use("/category", categoriesRouter);
-router.use("/meal", mealRouter);
+router.use("/meals", mealRouter);
 router.use("/info", infoRouter);
 
 module.exports = router;

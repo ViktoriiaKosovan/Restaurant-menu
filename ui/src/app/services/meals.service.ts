@@ -9,17 +9,24 @@ export interface Meals {
     description: string,
     weight: string,
     price: string,
-    availability: boolean
+   availability: boolean,
+   categoryId?: string
 }
 
 @Injectable({providedIn: "root"})
 export class MealsService {
     constructor(private http: HttpClient) { }
-    
+    getMealById(id: string | undefined): Observable<Meals> {
+       return this.http.get<Meals>(`http://localhost:5000/api/meals/${id}`)
+    }
+
     getAllMealsByCategory(id: string): Observable<Meals[]> {
-       return this.http.get<Meals[]>(`http://localhost:5000/api/meal/category/${id}`)
+       return this.http.get<Meals[]>(`http://localhost:5000/api/meals/category/${id}`)
     }
     getAllMeals(): Observable<Meals[]> {
-       return this.http.get<Meals[]>(`http://localhost:5000/api/meal/`)
+       return this.http.get<Meals[]>(`http://localhost:5000/api/meals/`)
     }
+   addMeal(meal: Meals): Observable<Meals> {
+    return this.http.post<Meals>('http://localhost:5000/api/meals', meal)
+     }
 }

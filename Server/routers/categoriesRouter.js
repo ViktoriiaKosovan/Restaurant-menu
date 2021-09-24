@@ -1,6 +1,7 @@
 const Router = require("express");
 const {
-  getCategories,
+  getAllCategories,
+  getAvailableCategories,
   createCategory,
   updateCategory,
   getCategoryById
@@ -13,7 +14,9 @@ const validationMiddleware = require("../middleware/validationMiddleware");
 
 const router = new Router();
 
-router.get("/", getCategories);
+
+router.get("/", getAvailableCategories);
+router.get("/available", getAllCategories);
 router.get("/:id", getCategoryById);
 router.post("/", validationMiddleware(categoryCreateSchema), createCategory);
 router.patch("/", validationMiddleware(categoryUpdateSchema), updateCategory);

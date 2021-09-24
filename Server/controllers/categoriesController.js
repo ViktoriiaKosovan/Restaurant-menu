@@ -17,9 +17,20 @@ const getCategoryById = async (req, res) => {
   }
 };
 
-const getCategories = async (req, res) => {
+const getAllCategories = async (req, res) => {
   try {
     let categories = await Category.findAll();
+    res
+      .status(httpCodes.OK)
+      .send(categories );
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
+const getAvailableCategories = async (req, res) => {
+  try {
+    let categories = await Category.findAll({ where: { availability: true } });
     res
       .status(httpCodes.OK)
       .send(categories );
@@ -60,4 +71,4 @@ const updateCategory = async (req, res) => {
   }
 };
 
-module.exports = { getCategories, createCategory, updateCategory, getCategoryById };
+module.exports = { getAvailableCategories, getAllCategories, createCategory, updateCategory, getCategoryById };

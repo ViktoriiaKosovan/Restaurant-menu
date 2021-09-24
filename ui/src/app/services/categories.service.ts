@@ -11,9 +11,13 @@ export interface Category {
 @Injectable({providedIn: "root"})
 export class CategoriesService {
     constructor(private http: HttpClient) { }
+
+     getAvailableCategories(): Observable<Category[]> {
+       return this.http.get<Category[]>('http://localhost:5000/api/category/')
+    }
     
     getAllCategories(): Observable<Category[]> {
-       return this.http.get<Category[]>('http://localhost:5000/api/category')
+       return this.http.get<Category[]>('http://localhost:5000/api/category/available')
     }
 
     getCategoryById(id: string | undefined): Observable<Category> {

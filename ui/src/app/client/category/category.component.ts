@@ -14,7 +14,7 @@ export class CategoryComponent implements OnInit {
     categories: Category[] = [];
     constructor(private categoriesService: CategoriesService) { }
     ngOnInit() {
-        this.categoriesService.getAllCategories()
+        this.categoriesService.getAvailableCategories()
         .subscribe(categories => {
                 this.categories = categories;
             })

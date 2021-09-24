@@ -69,7 +69,7 @@ export class ManageCategoriesComponent implements OnInit {
         this.formAdd.reset();
       })
 }
-  submit() {
+  submitUpdate() {
     let category: Category = {
       title: this.form.value.title,
       id: this.id,

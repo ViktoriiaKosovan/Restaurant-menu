@@ -14,7 +14,7 @@
 
 
 
-  <form class="category-form" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" [formGroup]="form" (ngSubmit)='submit()'>
+  <form class="category-form" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" [formGroup]="form" (ngSubmit)='submitUpdate()'>
   <div class="category-form_title"><input type="text"   placeholder="Enter category title" formControlName="title"></div>
   <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
 <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
@@ -22,7 +22,7 @@
   </div>
   <div><input type="checkbox" id="availability" formControlName="availability" > 
    <label for="availability"> Availability</label></div>
- <div> <button type="submit" [disabled]="form.invalid" class="sbm-btn">Save</button>
+ <div> <button type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched" class="sbm-btn">Save</button>
     <button type="button" (click)="hideEditForm()">Cancel</button></div>
     </form>
 

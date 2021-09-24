@@ -21,7 +21,7 @@ const getAllMeals=async (req, res) => {
 const getMealById= async (req, res) => {
   try {
     const id = req.params.id;
-    let mealById = await Meal.findAll({ where: { id: id} });
+    let mealById = await Meal.findOne({ where: { id: id} });
     res
       .status(httpCodes.OK)
       .send(mealById);

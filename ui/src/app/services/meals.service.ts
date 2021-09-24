@@ -28,5 +28,12 @@ export class MealsService {
     }
    addMeal(meal: Meals): Observable<Meals> {
     return this.http.post<Meals>('http://localhost:5000/api/meals', meal)
-     }
+   }
+   
+   updateMeal(meal: Meals): Observable<Meals> {
+        return this.http.patch<Meals>('http://localhost:5000/api/meals', meal)
+   }
+    deleteMeal(id: string | undefined): Observable<string> {
+       return this.http.delete<string>(`http://localhost:5000/api/meals/${id}`)
+    }
 }

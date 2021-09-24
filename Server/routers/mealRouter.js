@@ -1,6 +1,7 @@
 const Router = require("express");
 const router = new Router();
 const {
+  getMealById,
   getMealByCategory,
   createMeal,
   updateMeal,
@@ -15,6 +16,7 @@ const validationMiddleware = require("../middleware/validationMiddleware");
 
 router.get("/", getAllMeals);
 router.get("/category/:id", getMealByCategory);
+router.get("/:id", getMealById);
 router.post("/", validationMiddleware(mealCreateSchema), createMeal);
 router.patch("/", validationMiddleware(mealUpdateSchema), updateMeal);
 router.delete("/:id", deleteMeal);

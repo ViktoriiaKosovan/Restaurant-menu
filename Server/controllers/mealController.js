@@ -18,6 +18,17 @@ const getAllMeals=async (req, res) => {
   }
 };
 
+const getMealById= async (req, res) => {
+  try {
+    const id = req.params.id;
+    let mealById = await Meal.findAll({ where: { id: id} });
+    res
+      .status(httpCodes.OK)
+      .send(mealById);
+  } catch (error) {
+    handleError(res, error);
+  }
+};
 const getMealByCategory = async (req, res) => {
   try {
     const id = req.params.id;
@@ -77,4 +88,4 @@ const deleteMeal = async (req, res) => {
   }
 };
 
-module.exports = { getAllMeals, getMealByCategory, createMeal, updateMeal, deleteMeal };
+module.exports = { getAllMeals, getMealById, getMealByCategory, createMeal, updateMeal, deleteMeal };

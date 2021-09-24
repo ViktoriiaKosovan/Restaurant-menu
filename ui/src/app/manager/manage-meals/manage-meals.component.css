@@ -1,0 +1,142 @@
+.popup-holder,
+.popup-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3px;
+
+}
+
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  height: 500px;
+  background: white;
+  border-radius: 6px;
+  padding: 5px, 5px;
+}
+
+.close-popap {
+  align-self: flex-end;
+}
+
+.category-container_add {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.meal-form {
+  display: flex;
+  flex-direction: column;
+align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  margin-top: 30px;
+}
+
+input.search-input {
+  display: block;
+  border: 1px solid grey;
+  margin: 20px auto;
+  width: 65%;
+  height: 25px;
+  text-align: center;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
+  table-layout: fixed;
+}
+
+
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+input.ng-valid {
+  border: 1px solid green;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}

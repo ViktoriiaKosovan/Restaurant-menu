@@ -1,21 +1,9 @@
-<div class="category-container">
-  <form class="category-form " [formGroup]="formAdd" (ngSubmit)='submitAdd()'>
-  <div class="category-form_title"><input type="text"  placeholder="Enter category title" formControlName="title"></div>
-  <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
-<small *ngIf="form.controls.title.errors?.required">Title field is required</small>
-<small *ngIf="form.controls.title.errors?.maxlength">Title field length should be less than 30 symbols</small>
-  </div>
-  <div><input type="checkbox" id="availability" formControlName="availability" checked> 
-   <label for="availability"> Availability</label></div>
- <div > <button type="submit" [disabled]="formAdd.invalid && formAdd.touched" class="sbm-btn">Add category</button></div>
-   
-    </form>
-
+ <div class="category-container"> 
+ <button (click)="showEditForm(undefined)">Add category</button>
 <div class="popup-holder" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" >
-
       <div class="popup-content">
         <div class="close-popap" (click)="hideEditForm()">X</div>
-        <form class="category-form" [formGroup]="form" (ngSubmit)='submitUpdate()'>
+        <form class="category-form" [formGroup]="form" (ngSubmit)='submit()'>
   <div class="category-form_title"><input type="text"   placeholder="Enter category title" formControlName="title"></div>
   <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
 <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
@@ -47,7 +35,6 @@
     </tr>
   </tbody>
 </table>
-
     </div>
 
 

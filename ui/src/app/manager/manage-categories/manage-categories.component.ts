@@ -9,20 +9,15 @@ import { CategoriesService, Category } from 'src/app/services/categories.service
 })
 export class ManageCategoriesComponent implements OnInit {
 
-  formAdd: FormGroup;
+ 
   form: FormGroup;
   categories: Category[] = [];
   category: Category | undefined;
   showFormEdit: boolean = false;
-  editMode: boolean = false;
   id: string | undefined;
   search: string = '';
 
   constructor(private categoriesService: CategoriesService) {
-    this.formAdd = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      availability: new FormControl()
-    });
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
       availability: new FormControl()
@@ -37,52 +32,56 @@ export class ManageCategoriesComponent implements OnInit {
             })
   }
   hideEditForm() {
-   this.showFormEdit = false;
+    this.showFormEdit = false;
+    this.form.reset();
  }
 
   showEditForm(categoryId: string | undefined): void {
     
     this.id = categoryId;
-    this.categoriesService.getCategoryById(this.id)
-      .subscribe(category => {
-        this.form.patchValue({
-          title: category.title,
-          availability: category.availability 
+    if (this.id) {
+      this.categoriesService.getCategoryById(this.id)
+        .subscribe(category => {
+          this.form.patchValue({
+            title: category.title,
+            availability: category.availability
+          })
         })
-      })
+      this.showFormEdit = true;
+    }
     this.showFormEdit = true;
   }
 
-  submitAdd() {
-    let category: Category = {
-      title: this.formAdd.value.title,
-      availability: !!this.formAdd.value.availability
-    }
-    this.categoriesService.addCategory(category)
-      .subscribe(() => {
-        console.log(category);
-        this.categoriesService.getAllCategories()
-          .subscribe(categories => {
-            
-          this.categories = categories;
+  submit() {
+    if (!this.id) {
+      let category: Category = {
+        title: this.form.value.title,
+        availability: !!this.form.value.availability
+      }
+      this.categoriesService.addCategory(category)
+        .subscribe(() => {
+          console.log(category);
+          this.categoriesService.getAllCategories()
+            .subscribe(categories => {
+              this.categories = categories;
             })
-        this.formAdd.reset();
-      })
-}
-  submitUpdate() {
-    let category: Category = {
-      title: this.form.value.title,
-      id: this.id,
-      availability: !!this.form.value.availability
-    }
-    this.categoriesService.updateCategory(category)
-      .subscribe(() => {
-        this.categoriesService.getAllCategories()
-       .subscribe(categories => {
-          this.categories = categories;
+          
+        })
+    } else {
+      let category: Category = {
+        title: this.form.value.title,
+        id: this.id,
+        availability: !!this.form.value.availability
+      }
+      this.categoriesService.updateCategory(category)
+        .subscribe(() => {
+          this.categoriesService.getAllCategories()
+            .subscribe(categories => {
+              this.categories = categories;
             })
-       
-      })
+        })
+    }
+    this.form.reset();
   }
 
 }

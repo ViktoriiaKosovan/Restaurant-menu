@@ -33,7 +33,7 @@ export class ManageCategoriesComponent implements OnInit {
   }
   hideEditForm() {
     this.showFormEdit = false;
-    this.form.reset();
+   
  }
 
   showEditForm(categoryId: string | undefined): void {
@@ -42,14 +42,17 @@ export class ManageCategoriesComponent implements OnInit {
     if (this.id) {
       this.categoriesService.getCategoryById(this.id)
         .subscribe(category => {
+        
           this.form.patchValue({
             title: category.title,
             availability: category.availability
           })
         })
       this.showFormEdit = true;
+    } else {
+      this.showFormEdit = true;
+      this.form.reset();
     }
-    this.showFormEdit = true;
   }
 
   submit() {
@@ -73,6 +76,7 @@ export class ManageCategoriesComponent implements OnInit {
         id: this.id,
         availability: !!this.form.value.availability
       }
+      console.log(category)
       this.categoriesService.updateCategory(category)
         .subscribe(() => {
           this.categoriesService.getAllCategories()

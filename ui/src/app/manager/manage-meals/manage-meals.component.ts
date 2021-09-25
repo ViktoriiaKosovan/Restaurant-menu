@@ -46,7 +46,7 @@ export class ManageMealsComponent implements OnInit {
   }
  hideEditForm() {
    this.showFormEdit = false;
-   this.form.reset();
+  
  }
   
   deleteMeal(mealId: string | undefined) {
@@ -73,8 +73,10 @@ export class ManageMealsComponent implements OnInit {
           })
         })
       this.showFormEdit = true;
+    } else {
+      this.showFormEdit = true;
+      this.form.reset();
     }
-    this.showFormEdit = true;
   }
  submit() {
    if (!this.id) {

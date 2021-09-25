@@ -17,4 +17,7 @@ export class InfoService {
     getInfo(): Observable<Info[]> {
        return this.http.get<Info[]>('http://localhost:5000/api/info')
     }
+    updateInfo(info: Info): Observable<Info> {
+        return this.http.patch<Info>('http://localhost:5000/api/info/', info)
+    }
 }

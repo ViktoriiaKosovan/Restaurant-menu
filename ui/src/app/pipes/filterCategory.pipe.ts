@@ -4,7 +4,7 @@ import { Category } from '../services/categories.service';
 @Pipe({
   name: 'filter'
 })
-export class FilterPipe implements PipeTransform {
+export class FilterPipeCategory implements PipeTransform {
 
  transform(categories: Category[], search: string = '', field: string = 'title'): Category[] {
     if (!search.trim()) {

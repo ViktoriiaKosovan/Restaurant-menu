@@ -1,4 +1,5 @@
 const handleError = require("../utils/handleError");
+const { cloudinary}= require("../utils/cloudinary")
 const { Meal } = require("../models/models");
 const {
   successMessage,
@@ -43,12 +44,18 @@ const getMealByCategory = async (req, res) => {
 
 const createMeal = async (req, res) => {
   try {
-    let { img, name, description, weight, price, availability, categoryId } = req.body;
+   
+  let { name, img, description, weight, price, availability, categoryId } = req.body;
+   const uploadResponse = await cloudinary.uploader.upload_large(img, {
+            upload_preset: 'dev_setups',
+   });
+  console.log(uploadResponse.url);
+
     if (availability === "false") {
       availability = false;
       return availability;
     }
-    await Meal.create({ img, name, description, weight, price, availability, categoryId });
+    await Meal.create({ name, img:uploadResponse.url, description, weight, price, availability, categoryId });
     res
       .status(httpCodes.CREATED)
       .send({  message: successMessage });
@@ -60,12 +67,15 @@ const createMeal = async (req, res) => {
 const updateMeal = async (req, res) => {
   try {
     let { id, img, name, description, weight, price, categoryId, availability } = req.body;
+     const uploadResponse = await cloudinary.uploader.upload_large(img, {
+            upload_preset: 'dev_setups',
+   });
     if (availability === "false") {
       availability = false;
       return availability;
     }
     await Meal.update(
-      { img, name, description, weight, price, availability, categoryId },
+      { img:uploadResponse.url, name, description, weight, price, availability, categoryId },
       { where: { id: id } }
     );
     res

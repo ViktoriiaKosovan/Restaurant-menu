@@ -1,24 +1,32 @@
- <div class="category-container"> 
- <button (click)="showEditForm(undefined)">Add category</button>
+<div class="container">
+<div class="btn-container">
+<button class="btn" (click)="showEditForm()">Add category</button>
+</div>
+
 <div class="popup-holder" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" >
       <div class="popup-content">
         <div class="close-popap" (click)="hideEditForm()">X</div>
-        <form class="category-form" [formGroup]="form" (ngSubmit)='submit()'>
-  <div class="category-form_title"><input type="text"   placeholder="Enter category title" formControlName="title"></div>
+
+        <form class="form" [formGroup]="form" (ngSubmit)='submit()'>
+
+<input class="text-input" type="text"   placeholder="Enter category title" formControlName="title">
+
   <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
 <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
 <small *ngIf="form.controls.title.errors?.maxlength">Title field length should be less than 30 symbols</small>
   </div>
-  <div><input type="checkbox" id="availability" formControlName="availability" > 
-   <label for="availability"> Availability</label></div>
- <div> <button type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched" class="sbm-btn">Save</button>
-    <button type="button" (click)="hideEditForm()">Cancel</button></div>
+  
+ <input class="checkbox-input" type="checkbox" id="availability" formControlName="availability"> 
+  <label for="availability">Availability </label>
+
+ <div class="form-button"> <button class="btn sbm-btn"  type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched" ><span>Save</span></button>
+    <button class="btn sbm-btn" type="button" (click)="hideEditForm()"><span>Cancel</span></button></div>
     </form>
       </div>
 </div>
-  
 
-<input class="search-input" type="text" [(ngModel)]="search" placeholder="Search...">
+<input class="search-input" type="text" [(ngModel)]="search" placeholder="Search category...">
+
 <table>
   <thead>
     <tr  >
@@ -31,11 +39,12 @@
     <tr *ngFor="let category of categories | filter:search">
       <td data-label="Title">{{category.title}}</td>
       <td data-label="Availability">{{category.availability}}</td>
-      <td data-label="Edit"><button (click)="showEditForm(category.id)">edit</button></td>
+      <td data-label="Edit" ><button class="btn edit-btn" (click)="showEditForm(category.id)">Edit</button></td>
     </tr>
   </tbody>
 </table>
-    </div>
+</div>
+  
 
 
   

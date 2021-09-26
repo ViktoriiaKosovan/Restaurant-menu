@@ -7,12 +7,13 @@ import { CategoriesService, Category } from 'src/app/services/categories.service
   templateUrl: './manage-categories.component.html',
   styleUrls: ['./manage-categories.component.css']
 })
+  
+  
 export class ManageCategoriesComponent implements OnInit {
 
- 
   form: FormGroup;
   categories: Category[] = [];
-  category: Category | undefined;
+  category!: Category;
   showFormEdit: boolean = false;
   id: string | undefined;
   search: string = '';
@@ -25,24 +26,21 @@ export class ManageCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    
      this.categoriesService.getAllCategories()
        .subscribe(categories => {
           this.categories = categories;
             })
   }
+
   hideEditForm() {
-    this.showFormEdit = false;
-   
+    this.showFormEdit = false;  
  }
 
-  showEditForm(categoryId: string | undefined): void {
-    
+  showEditForm(categoryId: string | undefined=undefined): void {
     this.id = categoryId;
     if (this.id) {
       this.categoriesService.getCategoryById(this.id)
         .subscribe(category => {
-        
           this.form.patchValue({
             title: category.title,
             availability: category.availability
@@ -63,7 +61,6 @@ export class ManageCategoriesComponent implements OnInit {
       }
       this.categoriesService.addCategory(category)
         .subscribe(() => {
-          console.log(category);
           this.categoriesService.getAllCategories()
             .subscribe(categories => {
               this.categories = categories;
@@ -72,11 +69,10 @@ export class ManageCategoriesComponent implements OnInit {
         })
     } else {
       let category: Category = {
-        title: this.form.value.title,
         id: this.id,
+        title: this.form.value.title,
         availability: !!this.form.value.availability
       }
-      console.log(category)
       this.categoriesService.updateCategory(category)
         .subscribe(() => {
           this.categoriesService.getAllCategories()

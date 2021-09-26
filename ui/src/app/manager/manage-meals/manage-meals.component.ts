@@ -20,12 +20,14 @@ export class ManageMealsComponent implements OnInit {
   id: string | undefined;
   deleteId: string | undefined;
   // search: string = '';
+  imgFile: string | undefined;
 
   constructor(private mealsService: MealsService, private categoryService: CategoriesService) {
  this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
       categoryId: new FormControl(),
-      img: new FormControl(),
+      file: new FormControl('', [Validators.required]),
+   img: new FormControl('', [Validators.required]),
       description: new FormControl(),
       weight: new FormControl(),
       price: new FormControl(),
@@ -43,6 +45,23 @@ export class ManageMealsComponent implements OnInit {
        .subscribe(meals => {
           this.meals = meals;
             })
+  }
+ get uf(){
+    return this.form.controls;
+  }
+ onImageChange(e: any) {
+    const reader = new FileReader();
+   if (e.target.files && e.target.files.length) {
+      const [file] = e.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imgFile = reader.result as string;
+        this.form.patchValue({
+          img: reader.result
+        });
+   
+      };
+    }
   }
  hideEditForm() {
    this.showFormEdit = false;
@@ -71,14 +90,18 @@ export class ManageMealsComponent implements OnInit {
             categoryId: meal.categoryId,
             availability: meal.availability
           })
+          this.imgFile = meal.img;
         })
+      
       this.showFormEdit = true;
     } else {
+      this.imgFile = '';
       this.showFormEdit = true;
       this.form.reset();
     }
   }
- submit() {
+  submit() {
+   console.log(this.form.value);
    if (!this.id) {
      let meal: Meals = {
        name: this.form.value.name,
@@ -99,7 +122,7 @@ export class ManageMealsComponent implements OnInit {
        })
    } else {
      let meal: Meals = {
-        id: this.id,
+      id: this.id,
        name: this.form.value.name,
        categoryId: this.form.value.categoryId,
        img: this.form.value.img,
@@ -110,7 +133,6 @@ export class ManageMealsComponent implements OnInit {
      }
      this.mealsService.updateMeal(meal)
        .subscribe((meal) => {
-         console.log(meal);
           this.mealsService.getAllMeals()
             .subscribe(meals => {
               this.meals = meals;

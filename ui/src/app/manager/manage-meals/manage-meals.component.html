@@ -6,6 +6,9 @@
       <div class="popup-content">
         <div class="close-popap" (click)="hideEditForm()">X</div>
 <form class="meal-form"  [formGroup]="form" (ngSubmit)='submit()' >
+  <div class="preview" *ngIf="imgFile">
+    <img [src]="imgFile" style="width:150px; height:150px">
+  </div>
   <div class="category-form_title"><input type="text"   placeholder="Enter meal mane" formControlName="name"></div>
   <div *ngIf="form.controls.name.touched && form.controls.name.invalid"  class="validation">
 <small *ngIf="form.controls.name.errors?.required">Name field is required</small>
@@ -14,7 +17,13 @@
    <div class="category-form_title"><select type="text"  placeholder="Enter meal mane" formControlName="categoryId">
        <option *ngFor="let category of categories"  [ngValue]="category.id">{{category.title}}</option>
    </select></div>
-  <div class="category-form_title"><input type="text"   placeholder="Enter meal img" formControlName="img"></div>
+
+   <div >
+    <label for="file">Image</label>
+    <input type="file"  id="file" formControlName="file" (change)="onImageChange($event)">
+   
+  </div>
+
   <div class="category-form_title"><textarea type="text"   placeholder="Enter meal description" formControlName="description"></textarea></div>
  <div class="category-form_title"><input type="text"   placeholder="Enter meal weight" formControlName="weight"></div>
          <div class="category-form_title"><input type="text"   placeholder="Enter meal price" formControlName="price"></div>
@@ -33,7 +42,6 @@
   <thead>
     <tr>
       <th scope="col">Title</th>
-      <th scope="col">Img</th>
       <th scope="col">Description</th>
       <th scope="col">Weight</th>
       <th scope="col">Price</th>
@@ -45,7 +53,6 @@
   <tbody>
     <tr *ngFor="let meal of meals">
         <td data-label="Title">{{meal.name}}</td>
-        <td data-label="Img">{{meal.img}}</td>
       <td data-label="Description">{{meal.description}}</td>
       <td data-label="Weight">{{meal.weight}}</td>
       <td data-label="Price">{{meal.price}}</td>

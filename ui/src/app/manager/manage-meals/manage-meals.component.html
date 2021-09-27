@@ -17,24 +17,35 @@
 
  
   <input class="text-input" type="text"   placeholder="Enter meal mane" formControlName="name">
-
   <div *ngIf="form.controls.name.touched && form.controls.name.invalid"  class="validation">
 <small *ngIf="form.controls.name.errors?.required">Name field is required</small>
 <small *ngIf="form.controls.name.errors?.maxlength">Name field length should be less than 30 symbols</small>
-<small *ngIf="form.controls.name.errors?.titleExists">Title field should be unique</small>
+<small *ngIf="form.controls.name.errors?.titleExists">Name field should be unique</small>
+
   </div>
 
-   <select type="text"  placeholder="Enter meal mane" formControlName="categoryId">
+   <select  placeholder="Enter meal mane" formControlName="categoryId">
        <option *ngFor="let category of categories"  [ngValue]="category.id">{{category.title}}</option>
    </select>
 
    <div >
     <input type="file" accept="image/*"  formControlName="file" (change)="onImageChange($event)">
-   
   </div>
+
   <textarea class="text-input"  type="text"   placeholder="Enter meal description" formControlName="description"></textarea>
+ 
+
   <input class="text-input"  type="text"   placeholder="Enter meal weight" formControlName="weight">
+  <div *ngIf="form.controls.weight.touched && form.controls.weight.invalid"  class="validation">
+<small *ngIf="form.controls.weight.errors?.required">Weight field is required</small>
+<small *ngIf="form.controls.weight.errors?.maxlength">Weight field length should be less than 5 symbols</small>
+  </div>
+
   <input class="text-input"  type="text"   placeholder="Enter meal price" formControlName="price">
+  <div *ngIf="form.controls.price.touched && form.controls.price.invalid"  class="validation">
+<small *ngIf="form.controls.price.errors?.required">Price field is required</small>
+<small *ngIf="form.controls.price.errors?.maxlength">Price field length should be less than 5 symbols</small>
+  </div>
 
   <input class="checkbox-input" type="checkbox" id="availability" formControlName="availability" > 
    <label for="availability"> Availability</label>

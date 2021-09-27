@@ -4,13 +4,26 @@
       <div class="popup-content">
         <div class="close-popap" (click)="hideEditForm()">X</div>
 <form class="form"  [formGroup]="form" (ngSubmit)='submit()'>
+
   <input class="text-input" type="text"   placeholder="Enter address" formControlName="address">
-  <div *ngIf="form.controls.address.touched && form.controls.address.invalid"  class="validation">
-<small *ngIf="form.controls.address.errors?.required">Name field is required</small>
-<small *ngIf="form.controls.address.errors?.maxlength">Name field length should be less than 30 symbols</small>
+   <div *ngIf="form.controls.address.touched && form.controls.address.invalid"  class="validation">
+<small *ngIf="form.controls.address.errors?.required">Address field is required</small>
+<small *ngIf="form.controls.address.errors?.maxlength">Address field length should be less than 70 symbols</small>
+
   </div>
+
  <input type="text"   placeholder="Enter contacts" formControlName="contacts">
+  <div *ngIf="form.controls.contacts.touched && form.controls.contacts.invalid"  class="validation">
+<small *ngIf="form.controls.contacts.errors?.required">Contacts field is required</small>
+<small *ngIf="form.controls.contacts.errors?.maxlength">Contacts field length should be less than 30 symbols</small>
+  </div>
+
  <input type="text"   placeholder="Enter wiFi" formControlName="wiFi">
+ <div *ngIf="form.controls.wiFi.touched && form.controls.wiFi.invalid"  class="validation">
+<small *ngIf="form.controls.wiFi.errors?.required">WiFi field is required</small>
+<small *ngIf="form.controls.wiFi.errors?.maxlength">WiFi field length should be less than 20 symbols</small>
+  </div>
+
   <div class="form-button"> 
    <button class="btn sbm-btn" type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched">
      <span>Save</span>

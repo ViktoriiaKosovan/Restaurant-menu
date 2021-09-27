@@ -1,11 +1,11 @@
 const Joi = require("joi");
 
 const mealValidators = {
-  img: Joi.string().min(6).required(),
-  name: Joi.string().min(2).max(30).required(),
+  img: Joi.string().required(),
+  name: Joi.string().max(30).required(),
   description: Joi.string().allow("", null),
-  weight: Joi.string().min(1).max(5).required(),
-  price: Joi.string().min(1).max(5).required(),
+  weight: Joi.string().max(5).required(),
+  price: Joi.string().max(5).required(),
   categoryId: Joi.string().guid({ version: "uuidv4" }).required(),
   availability: Joi.boolean(),
 };

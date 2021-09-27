@@ -29,11 +29,13 @@ export class ManageCategoriesComponent implements OnInit {
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(30)], this.validator.validate.bind(this.validator)),
       availability: new FormControl()
-  });
+    });
+    console.log(this.form)
      this.categoriesService.getAllCategories()
        .subscribe(categories => {
           this.categories = categories;
-            })
+       })
+     
   }
 
  
@@ -60,6 +62,7 @@ export class ManageCategoriesComponent implements OnInit {
   }
 
   submit() {
+   console.log(this.form)
     if (!this.id) {
       let category: Category = {
         title: this.form.value.title,
@@ -72,7 +75,7 @@ export class ManageCategoriesComponent implements OnInit {
               this.categories = categories;
             })
           
-        }, (error) => {                              //Error callback
+        }, (error) => {                              
       console.error('error caught in component')
       this.errorMessage = error;
       console.log(this.errorMessage);

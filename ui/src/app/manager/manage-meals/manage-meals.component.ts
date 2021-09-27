@@ -33,8 +33,8 @@ export class ManageMealsComponent implements OnInit {
       file: new FormControl(''),
       img: new FormControl('', [Validators.required]),
       description: new FormControl(),
-      weight: new FormControl(),
-      price: new FormControl(),
+      weight: new FormControl('', [Validators.required, Validators.maxLength(5)]),
+      price: new FormControl('', [Validators.required, Validators.maxLength(5)]),
       availability: new FormControl()
   });
 

@@ -9,7 +9,7 @@
 
    <form class="form" [formGroup]="form" (ngSubmit)='submit()'>
 
-    <input class="text-input" type="text"   placeholder="Enter category title" formControlName="title">
+    <input class="text-input" type="text"   placeholder="Enter category title" formControlName="title" minlength="3">
 
     <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
         <small *ngIf="form.controls.title.errors?.required">Title field is required</small>

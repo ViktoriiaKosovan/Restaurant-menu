@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const categoriesValidators = {
-  title: Joi.string().min(4).max(30).required(),
+  title: Joi.string().max(30).required(),
   availability: Joi.boolean(),
 };
 

@@ -17,9 +17,9 @@ export class ManageInfoComponent implements OnInit {
   
   constructor(private infoService: InfoService) {
     this.form = new FormGroup({
-      address: new FormControl('', [Validators.required]),
-      contacts: new FormControl('', [Validators.required]),
-      wiFi: new FormControl('', [Validators.required])
+      address: new FormControl('', [Validators.required, Validators.maxLength(70)]),
+      contacts: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      wiFi: new FormControl('', [Validators.required, Validators.maxLength(20)])
   });
   }
 
@@ -27,7 +27,6 @@ export class ManageInfoComponent implements OnInit {
     
      this.infoService.getInfo()
        .subscribe(infos => {
-         console.log(infos)
           this.infos= infos;
             })
   }
@@ -47,7 +46,6 @@ export class ManageInfoComponent implements OnInit {
   }
 
   submit() {
-
       let info: Info = {
         address: this.form.value.address,
         id: this.infos[0].id,

@@ -54,7 +54,6 @@ export class ManageInfoComponent implements OnInit {
         contacts: this.form.value.contacts,
         wiFi: this.form.value.wiFi
       }
-      console.log(info)
       this.infoService.updateInfo(info)
         .subscribe(() => {
          this.infoService.getInfo()

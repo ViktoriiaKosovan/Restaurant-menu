@@ -1,18 +1,24 @@
-<div class="meals-container">
+<div class="container">
 
  <div class="popup-holder" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" >
       <div class="popup-content">
         <div class="close-popap" (click)="hideEditForm()">X</div>
-<form   [formGroup]="form" (ngSubmit)='submit()'>
-  <div class="category-form_title"><input type="text"   placeholder="Enter address" formControlName="address"></div>
+<form class="form"  [formGroup]="form" (ngSubmit)='submit()'>
+  <input class="text-input" type="text"   placeholder="Enter address" formControlName="address">
   <div *ngIf="form.controls.address.touched && form.controls.address.invalid"  class="validation">
 <small *ngIf="form.controls.address.errors?.required">Name field is required</small>
 <small *ngIf="form.controls.address.errors?.maxlength">Name field length should be less than 30 symbols</small>
   </div>
-  <div class="category-form_title"><input type="text"   placeholder="Enter contacts" formControlName="contacts"></div>
-  <div class="category-form_title"><input type="text"   placeholder="Enter wiFi" formControlName="wiFi"></div>
- <div> <button type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched" class="sbm-btn" >Save</button>
-    <button type="button" (click)="hideEditForm()">Cancel</button></div>
+ <input type="text"   placeholder="Enter contacts" formControlName="contacts">
+ <input type="text"   placeholder="Enter wiFi" formControlName="wiFi">
+  <div class="form-button"> 
+   <button class="btn sbm-btn" type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched">
+     <span>Save</span>
+    </button>
+    <button class="btn sbm-btn" type="button" (click)="hideEditForm()">
+     <span>Cancel</span>
+    </button>
+  </div>
     </form>
      </div> 
 </div> 
@@ -34,7 +40,7 @@
         <td data-label="Address">{{info.address}}</td>
         <td data-label="Contacts">{{info.contacts}}</td>
       <td data-label="WiFi">{{info.wiFi}}</td>
-      <td data-label="Edit"><button (click)="showEditForm()">edit</button></td>
+      <td data-label="Edit"><button class=" btn edit-btn" (click)="showEditForm()">edit</button></td>
 
     
 </tr>

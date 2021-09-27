@@ -60,7 +60,6 @@
   display: flex;
   flex-direction: column;
   width: 340px;
-  height: 250px;
   background: rgb(212, 209, 209);
   border-radius: 20px;
   border-color: rgb(68, 67, 67);
@@ -135,6 +134,7 @@ input[type=checkbox]:checked+label:before {
 
 .form-button {
   align-self: center;
+    margin-bottom: 15px;
 }
 
 

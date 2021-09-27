@@ -23,11 +23,11 @@ export class ManageMealsComponent implements OnInit {
   imgFile: string | undefined;
 
   constructor(private mealsService: MealsService, private categoryService: CategoriesService) {
- this.form = new FormGroup({
+    this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
       categoryId: new FormControl(),
-      file: new FormControl('', [Validators.required]),
-   img: new FormControl('', [Validators.required]),
+      file: new FormControl(''),
+      img: new FormControl('', [Validators.required]),
       description: new FormControl(),
       weight: new FormControl(),
       price: new FormControl(),
@@ -80,7 +80,6 @@ export class ManageMealsComponent implements OnInit {
     if (this.id) {
       this.mealsService.getMealById(this.id)
         .subscribe(meal => {
-          console.log(meal);
           this.form.patchValue({
             name: meal.name,
             img: meal.img,

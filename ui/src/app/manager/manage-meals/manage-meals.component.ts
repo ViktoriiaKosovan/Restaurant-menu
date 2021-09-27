@@ -2,7 +2,7 @@ import { Meals, MealsService } from './../../services/meals.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
-import { Router } from '@angular/router';
+import { exitingMealNameValidator } from 'src/app/validators/mealValidator';
 
 @Component({
   selector: 'app-manage-meals',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ManageMealsComponent implements OnInit {
 
-  form: FormGroup;
+  form!: FormGroup;
  
   categories: Category[] = [];
   meals: Meals[] = [];
@@ -22,9 +22,13 @@ export class ManageMealsComponent implements OnInit {
   // search: string = '';
   imgFile: string | undefined;
 
-  constructor(private mealsService: MealsService, private categoryService: CategoriesService) {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+  constructor(private mealsService: MealsService, private categoryService: CategoriesService, private validator: exitingMealNameValidator) {
+   
+  }
+
+  ngOnInit() {
+ this.form = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.maxLength(30)], this.validator.validate.bind(this.validator)),
       categoryId: new FormControl(),
       file: new FormControl(''),
       img: new FormControl('', [Validators.required]),
@@ -33,9 +37,7 @@ export class ManageMealsComponent implements OnInit {
       price: new FormControl(),
       availability: new FormControl()
   });
-  }
 
-  ngOnInit() {
     this.categoryService.getAllCategories()
        .subscribe(categories => {
           this.categories = categories;

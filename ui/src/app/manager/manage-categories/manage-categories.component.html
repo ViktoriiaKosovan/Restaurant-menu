@@ -14,6 +14,7 @@
     <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
         <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
         <small *ngIf="form.controls.title.errors?.maxlength">Title field length should be less than 30 symbols</small>
+        <small *ngIf="form.controls.title.errors?.titleExists">Title field should be unique</small>
   </div>
   
  <input class="checkbox-input" type="checkbox" id="availability" formControlName="availability"> 

@@ -21,6 +21,7 @@
   <div *ngIf="form.controls.name.touched && form.controls.name.invalid"  class="validation">
 <small *ngIf="form.controls.name.errors?.required">Name field is required</small>
 <small *ngIf="form.controls.name.errors?.maxlength">Name field length should be less than 30 symbols</small>
+<small *ngIf="form.controls.name.errors?.titleExists">Title field should be unique</small>
   </div>
 
    <select type="text"  placeholder="Enter meal mane" formControlName="categoryId">

@@ -1,6 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
+import { exitingCategoryNameValidator } from 'src/app/validators/categoriesValidator';
 
 @Component({
   selector: 'app-manage-categories',
@@ -11,26 +13,30 @@ import { CategoriesService, Category } from 'src/app/services/categories.service
   
 export class ManageCategoriesComponent implements OnInit {
 
-  form: FormGroup;
+  form!: FormGroup;
   categories: Category[] = [];
   category!: Category;
   showFormEdit: boolean = false;
   id: string | undefined;
   search: string = '';
+  errorMessage:any;
+  loading = false;
 
-  constructor(private categoriesService: CategoriesService) {
-    this.form = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      availability: new FormControl()
-  });
-  }
+
+  constructor(private categoriesService: CategoriesService, private validator: exitingCategoryNameValidator) {}
 
   ngOnInit() {
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.maxLength(30)], this.validator.validate.bind(this.validator)),
+      availability: new FormControl()
+  });
      this.categoriesService.getAllCategories()
        .subscribe(categories => {
           this.categories = categories;
             })
   }
+
+ 
 
   hideEditForm() {
     this.showFormEdit = false;  
@@ -66,7 +72,14 @@ export class ManageCategoriesComponent implements OnInit {
               this.categories = categories;
             })
           
-        })
+        }, (error) => {                              //Error callback
+      console.error('error caught in component')
+      this.errorMessage = error;
+      console.log(this.errorMessage);
+      this.form.controls['title'].setErrors({ 'incorrect': true });
+      console.log(this.form)
+      this.loading = false;
+    })
     } else {
       let category: Category = {
         id: this.id,

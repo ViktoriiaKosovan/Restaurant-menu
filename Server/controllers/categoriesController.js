@@ -19,7 +19,11 @@ const getCategoryById = async (req, res) => {
 
 const getAllCategories = async (req, res) => {
   try {
-    let categories = await Category.findAll();
+    let categories = await Category.findAll({
+        order: [
+        [ 'createdAt', 'ASC'],
+        ]
+      });
     res
       .status(httpCodes.OK)
       .send(categories );
@@ -30,7 +34,11 @@ const getAllCategories = async (req, res) => {
 
 const getAvailableCategories = async (req, res) => {
   try {
-    let categories = await Category.findAll({ where: { availability: true } });
+    let categories = await Category.findAll({ where: { availability: true } }, {
+        order: [
+        [ 'createdAt', 'ASC'],
+        ]
+      });
     res
       .status(httpCodes.OK)
       .send(categories );

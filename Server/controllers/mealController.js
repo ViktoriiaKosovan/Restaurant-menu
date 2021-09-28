@@ -10,7 +10,11 @@ const {
 const getAllMeals=async (req, res) => {
   try {
     
-    let meals = await Meal.findAll();
+    let meals = await Meal.findAll({
+        order: [
+        [ 'createdAt', 'ASC'],
+        ]
+      });
     res
       .status(httpCodes.OK)
       .send(meals);
@@ -33,7 +37,11 @@ const getMealById= async (req, res) => {
 const getMealByCategory = async (req, res) => {
   try {
     const id = req.params.id;
-    let mealsByCategory = await Meal.findAll({ where: { categoryId: id, availability:true } });
+    let mealsByCategory = await Meal.findAll({ where: { categoryId: id, availability:true } }, {
+        order: [
+        [ 'createdAt', 'ASC'],
+        ]
+      });
     res
       .status(httpCodes.OK)
       .send(mealsByCategory);

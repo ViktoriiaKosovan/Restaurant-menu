@@ -15,6 +15,7 @@ import { ManageCategoriesComponent } from './manager/manage-categories/manage-ca
 import { ManageMealsComponent } from './manager/manage-meals/manage-meals.component';
 import { ManageInfoComponent } from './manager/manage-info/manage-info.component';
 import { FilterPipeCategory } from './pipes/filterCategory.pipe';
+import { FilterPipeMeal } from './pipes/filterMeal.pipe';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FilterPipeCategory } from './pipes/filterCategory.pipe';
     ManageCategoriesComponent,
     ManageMealsComponent,
     ManageInfoComponent,
-    FilterPipeCategory
+    FilterPipeCategory,
+    FilterPipeMeal
   ],
   imports: [
     BrowserModule,

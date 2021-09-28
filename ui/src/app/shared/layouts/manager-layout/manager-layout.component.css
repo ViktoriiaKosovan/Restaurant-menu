@@ -1,0 +1,356 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 25px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+.btn-download {
+  display: inline-block;
+  background-color: rgb(136, 143, 150);
+  border: none;
+  color: white;
+  padding: 5px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+.btn-download:hover {
+  background-color: rgb(75, 76, 78);
+}
+
+.input-download {
+  display: none;
+}
+
+.download-img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -2px;
+}
+
+.preview-image img {
+  width: 130px;
+  height: 130px;
+}
+
+.select-container {
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid rgb(77, 76, 76);
+  background: #fafafa;
+}
+
+.select-container select {
+  padding: 5px 8px;
+  width: 110%;
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+}
+
+.select-container select:focus {
+  outline: none;
+}
+
+/* similar */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.info{
+  margin-top: 30px;
+}
+.btn-container {
+  align-self: center;
+  margin-top: 35px;
+}
+
+.btn {
+  font-size: 15px;
+  line-height: 1rem;
+  cursor: pointer;
+  transition: all 0.5s linear;
+  border-radius: 10px;
+  background-color: #746672;
+  color: white;
+  height: 45px;
+  padding: 0 1rem;
+}
+
+
+.btn:hover {
+  background-color: #8a597f;
+}
+
+.edit-btn {
+  height: 30px;
+}
+
+.sbm-btn {
+  width: 70px;
+  height: 30px;
+  margin: 10px 10px 0 0;
+  padding: 0;
+}
+
+
+
+/* popup */
+.popup-holder,
+.popup-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3px;
+  z-index: 999999;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  background: rgb(212, 209, 209);
+  border-radius: 20px;
+  border-color: rgb(68, 67, 67);
+  box-shadow: dimgrey;
+  padding: 5px, 5px;
+}
+
+.close-popap {
+  align-self: flex-end;
+  margin: 10px 10px 0 0;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.validation {
+  align-self: center;
+  color: crimson;
+}
+
+.text-input {
+  display: block;
+  width: 90%;
+  padding: 5px;
+  margin: 5px auto;
+  border-radius: 10px;
+  border: 1px solid rgb(77, 76, 76);
+  transition: .3s border-color;
+}
+
+input[type=checkbox]+label {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 0.2em;
+  font-family: 'Arial'
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox]+label:before {
+  content: "\2714";
+  border: 0.1em solid #000;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: .2s;
+}
+
+input[type=checkbox]+label:active:before {
+  transform: scale(0);
+}
+
+input[type=checkbox]:checked+label:before {
+  background-color: #093023;
+  border-color: #093023;
+  color: #fff;
+}
+
+.form-button {
+  align-self: center;
+  margin-bottom: 15px;
+}
+
+
+
+input.search-input {
+  display: block;
+  border: 1px solid grey;
+  margin: 20px auto;
+  width: 65%;
+  height: 25px;
+  text-align: center;
+}
+
+
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 85%;
+  table-layout: fixed;
+
+}
+
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+input.ng-valid {
+  border: 1px solid green;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
+
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}

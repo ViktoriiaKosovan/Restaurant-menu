@@ -8,7 +8,7 @@ import { exitingMealNameValidator } from 'src/app/validators/mealValidator';
 @Component({
   selector: 'app-manage-meals',
   templateUrl: './manage-meals.component.html',
-  styleUrls: ['./manage-meals.component.css']
+  styleUrls: ['../../shared/layouts/manager-layout/manager-layout.component.css']
 })
 export class ManageMealsComponent implements OnInit {
 

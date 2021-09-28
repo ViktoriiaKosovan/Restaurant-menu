@@ -5,7 +5,7 @@ import { Info, InfoService } from 'src/app/services/info.service';
 @Component({
   selector: 'app-manage-info',
   templateUrl: './manage-info.component.html',
-  styleUrls: ['./manage-info.component.css']
+  styleUrls: ['../../shared/layouts/manager-layout/manager-layout.component.css']
 })
 export class ManageInfoComponent implements OnInit {
 

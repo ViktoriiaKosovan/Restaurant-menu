@@ -45,7 +45,21 @@
   <tbody>
     <tr *ngFor="let category of categories | filter:search">
       <td data-label="Title">{{category.title}}</td>
-      <td data-label="Availability">{{category.availability}}</td>
+
+      <td data-label="Availability" *ngIf="category.availability">
+        <label class="switch">
+  <input name="myData" type="checkbox"  checked (change)="toggleAvailability(category.id, category.availability)">
+  <span class="slider round"></span>
+</label>
+      </td>
+
+      <td data-label="Availability" *ngIf="!category.availability">
+        <label class="switch">
+  <input name="myData" #myCheckbox  type="checkbox" (change)="toggleAvailability(category.id, category.availability)">
+  <span class="slider round"></span>
+</label> 
+      </td>
+
       <td data-label="Edit" ><button class="btn edit-btn" (click)="showEditForm(category.id)">Edit</button></td>
     </tr>
   </tbody>

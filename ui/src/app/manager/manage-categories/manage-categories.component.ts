@@ -21,6 +21,7 @@ export class ManageCategoriesComponent implements OnInit {
   search: string = '';
   errorMessage:any;
   loading = false;
+  categoryAvail!: boolean;
 
 
   constructor(private categoriesService: CategoriesService, private validator: exitingCategoryNameValidator) {}
@@ -38,7 +39,17 @@ export class ManageCategoriesComponent implements OnInit {
      
   }
 
- 
+toggleAvailability(categoryId: string | undefined, categoryAvail: boolean ) {
+    this.id = categoryId;
+    this.categoryAvail=categoryAvail
+    console.log(this.id, this.categoryAvail)
+    this.categoriesService.updateCategoryAvailability({ id: this.id, availability: !this.categoryAvail }).subscribe(() => {
+       this.categoriesService.getAllCategories()
+           .subscribe(categories => {
+             this.categories = categories;
+           })
+    })
+  } 
 
   hideEditForm() {
     this.showFormEdit = false;  

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Availability } from "./meals.service";
 
 export interface Category {
     id?: string ,
@@ -29,4 +30,8 @@ export class CategoriesService {
     updateCategory(category: Category): Observable<Category> {
         return this.http.patch<Category>('http://localhost:5000/api/category', category)
     }
+     updateCategoryAvailability(availability: Availability): Observable<Availability> {
+        return this.http.patch<Availability>('http://localhost:5000/api/category/availability', availability)
+   }
+
 }

@@ -71,4 +71,20 @@ const updateCategory = async (req, res) => {
   }
 };
 
-module.exports = { getAvailableCategories, getAllCategories, createCategory, updateCategory, getCategoryById };
+const updateCategoryAvailability = async (req, res) => {
+  try {
+    let { id, availability } = req.body;
+    if (availability === "false") {
+      availability = false;
+      return availability;
+    }
+    await Category.update({ availability }, { where: { id: id } });
+    res
+      .status(httpCodes.OK)
+      .send({ message: successMessage });
+  } catch (error) {
+    handleError(res, error, httpCodes.UPDATE_ERROR);
+  }
+};
+
+module.exports = { getAvailableCategories, getAllCategories, createCategory, updateCategory, updateCategoryAvailability, getCategoryById };

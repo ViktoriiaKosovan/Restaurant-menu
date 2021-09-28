@@ -4,7 +4,8 @@ const {
   getAvailableCategories,
   createCategory,
   updateCategory,
-  getCategoryById
+  getCategoryById,
+  updateCategoryAvailability
 } = require("../controllers/categoriesController");
 const {
   categoryCreateSchema,
@@ -20,5 +21,6 @@ router.get("/available", getAllCategories);
 router.get("/:id", getCategoryById);
 router.post("/", validationMiddleware(categoryCreateSchema), createCategory);
 router.patch("/", validationMiddleware(categoryUpdateSchema), updateCategory);
+router.patch("/availability", updateCategoryAvailability);
 
 module.exports = router;

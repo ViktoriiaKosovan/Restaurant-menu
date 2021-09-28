@@ -92,7 +92,18 @@
       <td data-label="Description">{{meal.description}}</td>
       <td data-label="Weight">{{meal.weight}}</td>
       <td data-label="Price">{{meal.price}}</td>
-      <td data-label="Availability">{{meal.availability}}</td>
+      <td data-label="Availability" *ngIf="meal.availability">
+        <label class="switch">
+  <input name="myData" #myCheckbox type="checkbox" value="meal.availability" (change)="toggleAvailability()">
+  <span class="slider round"></span>
+</label>
+      </td>
+      <td data-label="Availability" *ngIf="!meal.availability">
+        <label class="switch">
+  <input name="myData" #myCheckbox  type="checkbox" >
+  <span class="slider round"></span>
+</label> 
+      </td>
       <td data-label="Delete"><button class="btn edit-btn" (click)="deleteMeal(meal.id)">delete</button></td>
       <td data-label="Edit"><button class=" btn edit-btn" (click)="showEditForm(meal.id)">edit</button></td>
     </tr>

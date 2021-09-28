@@ -1,3 +1,4 @@
+
 import { Meals, MealsService } from './../../services/meals.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +14,8 @@ export class ManageMealsComponent implements OnInit {
 
   @ViewChild("input")
   inputRef!: ElementRef;
+  @ViewChild('myCheckbox')
+  myCheckbox!: ElementRef;
   form!: FormGroup;
   categories: Category[] = [];
   meals: Meals[] = [];
@@ -22,6 +25,9 @@ export class ManageMealsComponent implements OnInit {
   deleteId: string | undefined;
   search: string = '';
   imgFile: string | undefined;
+  // mealAval!: Meals;
+  // mealAval!: Meals;
+  isChecked!: boolean;
   
 
   constructor(private mealsService: MealsService, private categoryService: CategoriesService, private validator: exitingMealNameValidator) {
@@ -55,6 +61,31 @@ export class ManageMealsComponent implements OnInit {
   triggerClick() {
     this.inputRef.nativeElement.click();
   }
+
+
+  toggleAvailability() {
+    console.log(this.myCheckbox)
+  }
+  // toogleAvailability({ ...mealAval }: any) {
+  //   console.log(this.myCheckbox.nativeElement.checked)
+  //   this.mealAval = mealAval;
+    
+  //   if (this.myCheckbox.nativeElement.checked) {
+  //     this.mealsService.updateMeal({ ...this.mealAval, availability: true }).subscribe(() => {
+  //       this.mealsService.getAllMeals()
+  //          .subscribe(meals => {
+  //            this.meals = meals;
+  //          }) })
+  //   } else {
+  //     this.mealsService.updateMeal({ ...this.mealAval, availability: false }).subscribe(() => {
+  //       this.mealsService.getAllMeals()
+  //          .subscribe(meals => {
+  //            this.meals = meals;
+  //          })
+  //     })
+  //   }
+    
+  // }
 
  onImageChange(e: any) {
     const reader = new FileReader();

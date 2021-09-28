@@ -1,4 +1,4 @@
-<div class="container">
+<section class="container">
 <div class="btn-container">
  <button class="btn" (click)="showEditForm(undefined)">Add meal</button>
 </div>
@@ -21,36 +21,39 @@
     formControlName="file" (change)="onImageChange($event)"
     #input>
   </div>
-  <button (click)="triggerClick()" class="btn-download"> 
+  <button type="button" (click)="triggerClick()" class="btn-download"> 
     <img src="../../../assets/images/download.png" class="download-img"> 
     <span> Download image</span>
   </button>
 
-  <input class="text-input" type="text"   placeholder="Enter meal name" formControlName="name">
+  <label for="name">Title<sup>*</sup></label>
+  <input id="name" class="text-input" type="text" placeholder="Enter meal name" formControlName="name">
   <div *ngIf="form.controls.name.touched && form.controls.name.invalid"  class="validation">
 <small *ngIf="form.controls.name.errors?.required">Name field is required</small>
 <small *ngIf="form.controls.name.errors?.maxlength">Name field length should be less than 30 symbols</small>
 <small *ngIf="form.controls.name.errors?.titleExists">Name field should be unique</small>
   </div>
 
+  <label for="select">Select category for meal<sup>*</sup></label>
   <div class="select-container">
-   <select  placeholder="Enter meal mane" formControlName="categoryId" >
+   <select id="select" placeholder="Enter meal mane" formControlName="categoryId" >
        <option *ngFor="let category of categories"  [ngValue]="category.id" [selected]>{{category.title}}</option>
    </select>
    </div>
 
   
-
-  <textarea class="text-input"  type="text"   placeholder="Enter meal description" formControlName="description"></textarea>
+<label for="description">Description</label>
+  <textarea id="description" class="text-input"  type="text"   placeholder="Enter meal description" formControlName="description"></textarea>
  
-
-  <input class="text-input"  type="text"   placeholder="Enter meal weight" formControlName="weight">
+<label for="weight">Weight<sup>*</sup></label>
+  <input id="weight" class="text-input"  type="text" placeholder="Enter meal weight" formControlName="weight">
   <div *ngIf="form.controls.weight.touched && form.controls.weight.invalid"  class="validation">
 <small *ngIf="form.controls.weight.errors?.required">Weight field is required</small>
 <small *ngIf="form.controls.weight.errors?.maxlength">Weight field length should be less than 5 symbols</small>
   </div>
 
-  <input class="text-input"  type="text"   placeholder="Enter meal price" formControlName="price">
+  <label for="price">Price<sup>*</sup></label>
+  <input id="price" class="text-input"  type="text"   placeholder="Enter meal price" formControlName="price">
   <div *ngIf="form.controls.price.touched && form.controls.price.invalid"  class="validation">
 <small *ngIf="form.controls.price.errors?.required">Price field is required</small>
 <small *ngIf="form.controls.price.errors?.maxlength">Price field length should be less than 5 symbols</small>
@@ -102,7 +105,7 @@
 
       <td data-label="Availability" *ngIf="!meal.availability">
         <label class="switch">
-  <input name="myData" #myCheckbox  type="checkbox" (change)="toggleAvailability(meal.id, meal.availability)">
+  <input name="myData"  type="checkbox" (change)="toggleAvailability(meal.id, meal.availability)">
   <span class="slider round"></span>
 </label> 
       </td>
@@ -113,4 +116,4 @@
   </tbody>
 </table>
 
-    </div>
+    </section>

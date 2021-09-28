@@ -61,10 +61,6 @@ input:checked+.slider:before {
 }
 
 
-
-
-
-
 .btn-download {
   display: inline-block;
   background-color: rgb(136, 143, 150);
@@ -208,20 +204,21 @@ input:checked+.slider:before {
   border: 1px solid rgb(77, 76, 76);
   transition: .3s border-color;
 }
+
 label {
- color: #3a3735;
- display: block;
- width: 85%;
- line-height: 0;
- font-size: 14px;
- font-weight: 700;
- 
-}
-input[type=checkbox]+label {
+  color: #3a3735;
   display: block;
-  margin: 0 auto;
-  cursor: pointer;
+  width: 85%;
+  line-height: 0;
+  font-size: 13px;
+  font-weight: 700;
+   cursor: pointer;
+
+}
+
+input[type=checkbox]+label {
   padding: 0.2em;
+  line-height: 1.5;
   font-family: 'Arial'
 }
 

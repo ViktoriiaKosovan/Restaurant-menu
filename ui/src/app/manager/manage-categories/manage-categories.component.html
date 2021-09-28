@@ -1,4 +1,4 @@
-<div class="container">
+<section class="container">
 <div class="btn-container">
 <button class="btn" (click)="showEditForm()">Add category</button>
 </div>
@@ -9,7 +9,8 @@
 
    <form class="form" [formGroup]="form" (ngSubmit)='submit()'>
 
-    <input class="text-input" type="text"   placeholder="Enter category title" formControlName="title" minlength="3">
+    <label for="title">Title<sup>*</sup></label>
+    <input id="title" class="text-input" type="text"   placeholder="Enter category title" formControlName="title" minlength="3">
 
     <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
         <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
@@ -18,7 +19,7 @@
   </div>
   
  <input class="checkbox-input" type="checkbox" id="availability" formControlName="availability"> 
-  <label for="availability">Availability </label>
+  <label class="checkbox-label" for="availability">Availability </label>
 
  <div class="form-button"> 
    <button class="btn sbm-btn"  type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched">
@@ -64,7 +65,7 @@
     </tr>
   </tbody>
 </table>
-</div>
+</section>
   
 
 

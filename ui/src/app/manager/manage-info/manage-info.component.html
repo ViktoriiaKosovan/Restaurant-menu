@@ -1,24 +1,24 @@
-<div class="container info">
+<section class="container info">
 
  <div class="popup-holder" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" >
       <div class="popup-content">
         <div class="close-popap" (click)="hideEditForm()">X</div>
 <form class="form"  [formGroup]="form" (ngSubmit)='submit()'>
-<label for="address">Address</label>
+<label for="address">Address<sup>*</sup></label>
   <input id="address" class="text-input" type="text"   placeholder="Enter address" formControlName="address">
    <div *ngIf="form.controls.address.touched && form.controls.address.invalid"  class="validation">
 <small *ngIf="form.controls.address.errors?.required">Address field is required</small>
 <small *ngIf="form.controls.address.errors?.maxlength">Address field length should be less than 70 symbols</small>
 
   </div>
-<label for="contacts">Contacts</label>
+<label for="contacts">Contacts<sup>*</sup></label>
  <input id="contacts" class="text-input" type="text"   placeholder="Enter contacts" formControlName="contacts">
   <div *ngIf="form.controls.contacts.touched && form.controls.contacts.invalid"  class="validation">
 <small *ngIf="form.controls.contacts.errors?.required">Contacts field is required</small>
 <small *ngIf="form.controls.contacts.errors?.maxlength">Contacts field length should be less than 30 symbols</small>
   </div>
 
-  <label for="wiFi">Wifi</label>
+  <label for="wiFi">WiFi<sup>*</sup></label>
  <input id="wiFi" type="text" class="text-input"  placeholder="Enter wiFi" formControlName="wiFi">
  <div *ngIf="form.controls.wiFi.touched && form.controls.wiFi.invalid"  class="validation">
 <small *ngIf="form.controls.wiFi.errors?.required">WiFi field is required</small>
@@ -62,5 +62,5 @@
   </tbody>
 </table>
 
-    </div>
+    </section>
 

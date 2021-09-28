@@ -12,6 +12,12 @@ export interface Meals {
    availability: boolean,
    categoryId?: string
 }
+export interface Availability {
+    id?: string,
+   availability: boolean,
+ 
+}
+
 
 @Injectable({providedIn: "root"})
 export class MealsService {
@@ -33,6 +39,10 @@ export class MealsService {
    updateMeal(meal: Meals): Observable<Meals> {
         return this.http.patch<Meals>('http://localhost:5000/api/meals', meal)
    }
+    updateMealAvailability(availability: Availability): Observable<Availability> {
+        return this.http.patch<Availability>('http://localhost:5000/api/meals/availability', availability)
+   }
+
     deleteMeal(id: string | undefined): Observable<string> {
        return this.http.delete<string>(`http://localhost:5000/api/meals/${id}`)
     }

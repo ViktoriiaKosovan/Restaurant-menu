@@ -35,7 +35,7 @@
 
   <div class="select-container">
    <select  placeholder="Enter meal mane" formControlName="categoryId" >
-       <option *ngFor="let category of categories"  [ngValue]="category.id" [selected]="category.id === categories[0].id">{{category.title}}</option>
+       <option *ngFor="let category of categories"  [ngValue]="category.id" [selected]>{{category.title}}</option>
    </select>
    </div>
 
@@ -92,18 +92,21 @@
       <td data-label="Description">{{meal.description}}</td>
       <td data-label="Weight">{{meal.weight}}</td>
       <td data-label="Price">{{meal.price}}</td>
+
       <td data-label="Availability" *ngIf="meal.availability">
         <label class="switch">
-  <input name="myData" #myCheckbox type="checkbox" value="meal.availability" (change)="toggleAvailability()">
+  <input name="myData" type="checkbox"  checked (change)="toggleAvailability(meal.id, meal.availability)">
   <span class="slider round"></span>
 </label>
       </td>
+
       <td data-label="Availability" *ngIf="!meal.availability">
         <label class="switch">
-  <input name="myData" #myCheckbox  type="checkbox" >
+  <input name="myData" #myCheckbox  type="checkbox" (change)="toggleAvailability(meal.id, meal.availability)">
   <span class="slider round"></span>
 </label> 
       </td>
+      
       <td data-label="Delete"><button class="btn edit-btn" (click)="deleteMeal(meal.id)">delete</button></td>
       <td data-label="Edit"><button class=" btn edit-btn" (click)="showEditForm(meal.id)">edit</button></td>
     </tr>

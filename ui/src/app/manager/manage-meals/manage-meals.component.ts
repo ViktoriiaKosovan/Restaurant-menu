@@ -14,8 +14,6 @@ export class ManageMealsComponent implements OnInit {
 
   @ViewChild("input")
   inputRef!: ElementRef;
-  @ViewChild('myCheckbox')
-  myCheckbox!: ElementRef;
   form!: FormGroup;
   categories: Category[] = [];
   meals: Meals[] = [];
@@ -25,9 +23,8 @@ export class ManageMealsComponent implements OnInit {
   deleteId: string | undefined;
   search: string = '';
   imgFile: string | undefined;
-  // mealAval!: Meals;
-  // mealAval!: Meals;
-  isChecked!: boolean;
+  mealAvail!: boolean;
+  
   
 
   constructor(private mealsService: MealsService, private categoryService: CategoriesService, private validator: exitingMealNameValidator) {
@@ -37,7 +34,7 @@ export class ManageMealsComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(30)],
-        this.validator.validate.bind(this.validator)),
+      this.validator.validate.bind(this.validator)),
       categoryId: new FormControl(),
       file: new FormControl(''),
       img: new FormControl('', [Validators.required]),
@@ -62,30 +59,18 @@ export class ManageMealsComponent implements OnInit {
     this.inputRef.nativeElement.click();
   }
 
-
-  toggleAvailability() {
-    console.log(this.myCheckbox)
+  toggleAvailability(mealId: string | undefined, mealAvail: boolean ) {
+    this.id = mealId;
+    this.mealAvail=mealAvail
+    console.log(this.id, this.mealAvail)
+    this.mealsService.updateMealAvailability({ id: this.id, availability: !this.mealAvail }).subscribe(() => {
+       this.mealsService.getAllMeals()
+           .subscribe(meals => {
+             this.meals = meals;
+           })
+    })
   }
-  // toogleAvailability({ ...mealAval }: any) {
-  //   console.log(this.myCheckbox.nativeElement.checked)
-  //   this.mealAval = mealAval;
-    
-  //   if (this.myCheckbox.nativeElement.checked) {
-  //     this.mealsService.updateMeal({ ...this.mealAval, availability: true }).subscribe(() => {
-  //       this.mealsService.getAllMeals()
-  //          .subscribe(meals => {
-  //            this.meals = meals;
-  //          }) })
-  //   } else {
-  //     this.mealsService.updateMeal({ ...this.mealAval, availability: false }).subscribe(() => {
-  //       this.mealsService.getAllMeals()
-  //          .subscribe(meals => {
-  //            this.meals = meals;
-  //          })
-  //     })
-  //   }
-    
-  // }
+ 
 
  onImageChange(e: any) {
     const reader = new FileReader();

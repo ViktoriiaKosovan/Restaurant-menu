@@ -86,6 +86,26 @@ const updateMeal = async (req, res) => {
   }
 };
 
+const updateMealAvailability = async (req, res) => {
+  try {
+    let { id, availability } = req.body;
+    
+    if (availability === "false") {
+      availability = false;
+      return availability;
+    }
+    await Meal.update(
+      { availability },
+      { where: { id: id } }
+    );
+    res
+      .status(httpCodes.OK)
+      .send({  message: successMessage });
+  } catch (error) {
+    handleError(res, error, httpCodes.UPDATE_ERROR);
+  }
+};
+
 const deleteMeal = async (req, res) => {
   try {
     const id = req.params.id;
@@ -98,4 +118,4 @@ const deleteMeal = async (req, res) => {
   }
 };
 
-module.exports = { getAllMeals, getMealById, getMealByCategory, createMeal, updateMeal, deleteMeal };
+module.exports = { getAllMeals, getMealById, getMealByCategory, createMeal, updateMeal, updateMealAvailability, deleteMeal };

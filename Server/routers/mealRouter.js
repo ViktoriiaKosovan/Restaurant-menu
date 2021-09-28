@@ -6,7 +6,8 @@ const {
   createMeal,
   updateMeal,
   deleteMeal,
-  getAllMeals
+  getAllMeals,
+  updateMealAvailability
 } = require("../controllers/mealController");
 const {
   mealCreateSchema,
@@ -19,6 +20,7 @@ router.get("/category/:id", getMealByCategory);
 router.get("/:id", getMealById);
 router.post("/", validationMiddleware(mealCreateSchema), createMeal);
 router.patch("/", validationMiddleware(mealUpdateSchema), updateMeal);
+router.patch("/availability", updateMealAvailability);
 router.delete("/:id", deleteMeal);
 
 module.exports = router;

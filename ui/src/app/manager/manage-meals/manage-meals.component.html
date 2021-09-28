@@ -12,25 +12,34 @@
 <form class="form"  [formGroup]="form" (ngSubmit)='submit()' >
 
  <div class="preview-image" *ngIf="imgFile">
-    <img [src]="imgFile" style="width:150px; height:150px" >
+    <img [src]="imgFile" >
   </div>
 
- 
-  <input class="text-input" type="text"   placeholder="Enter meal mane" formControlName="name">
+  <div >
+    <input class="input-download" 
+    type="file" accept="image/*"  
+    formControlName="file" (change)="onImageChange($event)"
+    #input>
+  </div>
+  <button (click)="triggerClick()" class="btn-download"> 
+    <img src="../../../assets/images/download.png" class="download-img"> 
+    <span> Download image</span>
+  </button>
+
+  <input class="text-input" type="text"   placeholder="Enter meal name" formControlName="name">
   <div *ngIf="form.controls.name.touched && form.controls.name.invalid"  class="validation">
 <small *ngIf="form.controls.name.errors?.required">Name field is required</small>
 <small *ngIf="form.controls.name.errors?.maxlength">Name field length should be less than 30 symbols</small>
 <small *ngIf="form.controls.name.errors?.titleExists">Name field should be unique</small>
-
   </div>
 
-   <select  placeholder="Enter meal mane" formControlName="categoryId">
-       <option *ngFor="let category of categories"  [ngValue]="category.id">{{category.title}}</option>
+  <div class="select-container">
+   <select  placeholder="Enter meal mane" formControlName="categoryId" >
+       <option *ngFor="let category of categories"  [ngValue]="category.id" [selected]="category.id === categories[0].id">{{category.title}}</option>
    </select>
+   </div>
 
-   <div >
-    <input type="file" accept="image/*"  formControlName="file" (change)="onImageChange($event)">
-  </div>
+  
 
   <textarea class="text-input"  type="text"   placeholder="Enter meal description" formControlName="description"></textarea>
  
@@ -64,7 +73,7 @@
   
 
 
-<!-- <input class="search-input" type="text" [(ngModel)]="search" placeholder="Search...">  -->
+<input class="search-input" type="text" [(ngModel)]="search " placeholder="Search meal..."> 
 <table>
   <thead>
     <tr>
@@ -78,7 +87,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let meal of meals">
+    <tr *ngFor="let meal of meals | filterMeal:search">
         <td data-label="Title">{{meal.name}}</td>
       <td data-label="Description">{{meal.description}}</td>
       <td data-label="Weight">{{meal.weight}}</td>

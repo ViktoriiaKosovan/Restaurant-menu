@@ -1,5 +1,5 @@
 import { Meals, MealsService } from './../../services/meals.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
 import { exitingMealNameValidator } from 'src/app/validators/mealValidator';
@@ -11,24 +11,27 @@ import { exitingMealNameValidator } from 'src/app/validators/mealValidator';
 })
 export class ManageMealsComponent implements OnInit {
 
+  @ViewChild("input")
+  inputRef!: ElementRef;
   form!: FormGroup;
- 
   categories: Category[] = [];
   meals: Meals[] = [];
   showFormEdit: boolean = false;
   meal: Meals | undefined;
   id: string | undefined;
   deleteId: string | undefined;
-  // search: string = '';
+  search: string = '';
   imgFile: string | undefined;
+  
 
   constructor(private mealsService: MealsService, private categoryService: CategoriesService, private validator: exitingMealNameValidator) {
    
   }
 
   ngOnInit() {
- this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(30)], this.validator.validate.bind(this.validator)),
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.maxLength(30)],
+        this.validator.validate.bind(this.validator)),
       categoryId: new FormControl(),
       file: new FormControl(''),
       img: new FormControl('', [Validators.required]),
@@ -48,9 +51,11 @@ export class ManageMealsComponent implements OnInit {
           this.meals = meals;
             })
   }
- get uf(){
-    return this.form.controls;
+
+  triggerClick() {
+    this.inputRef.nativeElement.click();
   }
+
  onImageChange(e: any) {
     const reader = new FileReader();
    if (e.target.files && e.target.files.length) {
@@ -64,7 +69,8 @@ export class ManageMealsComponent implements OnInit {
    
       };
     }
-  }
+ }
+  
  hideEditForm() {
    this.showFormEdit = false;
   
@@ -133,7 +139,7 @@ export class ManageMealsComponent implements OnInit {
        availability: !!this.form.value.availability
      }
      this.mealsService.updateMeal(meal)
-       .subscribe((meal) => {
+       .subscribe(() => {
           this.mealsService.getAllMeals()
             .subscribe(meals => {
               this.meals = meals;

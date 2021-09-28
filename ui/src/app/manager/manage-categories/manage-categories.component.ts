@@ -30,7 +30,7 @@ export class ManageCategoriesComponent implements OnInit {
       title: new FormControl('', [Validators.required, Validators.maxLength(30)], this.validator.validate.bind(this.validator)),
       availability: new FormControl()
     });
-    console.log(this.form)
+   
      this.categoriesService.getAllCategories()
        .subscribe(categories => {
           this.categories = categories;

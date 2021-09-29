@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import baseInfoUrl from "../constants/infoApiUrl";
 
 export interface Info {
     id?: string,
@@ -15,9 +16,9 @@ export class InfoService {
     constructor(private http: HttpClient) { }
     
     getInfo(): Observable<Info[]> {
-       return this.http.get<Info[]>('http://localhost:5000/api/info')
+       return this.http.get<Info[]>(baseInfoUrl)
     }
     updateInfo(info: Info): Observable<Info> {
-        return this.http.patch<Info>('http://localhost:5000/api/info/', info)
+        return this.http.patch<Info>(baseInfoUrl, info)
     }
 }

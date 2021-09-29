@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Category } from "./categories.service";
+import { baseMealsUrl, getMealsByCategory, updateMealAvailability } from "../constants/mealsApiUrls";
 
 export interface Meals {
     id?: string,
@@ -32,7 +32,7 @@ export class MealsService {
    }
    
     private getAllMealsInitialize(): void {
-    this.http.get<Meals[]>(`http://localhost:5000/api/meals/`)
+    this.http.get<Meals[]>(baseMealsUrl)
       .subscribe((data: Meals[]) => {
         this._meals.next(data);
       });
@@ -48,28 +48,28 @@ export class MealsService {
 
 
     getMealById(id: string | undefined): Observable<Meals> {
-       return this.http.get<Meals>(`http://localhost:5000/api/meals/${id}`)
+       return this.http.get<Meals>(`${baseMealsUrl}/${id}`)
     }
 
     getAllMealsByCategory(id: string): Observable<Meals[]> {
-       return this.http.get<Meals[]>(`http://localhost:5000/api/meals/category/${id}`)
+       return this.http.get<Meals[]>(`${getMealsByCategory}/${id}`)
     }
     getAllMeals(): Observable<Meals[]> {
-       return this.http.get<Meals[]>(`http://localhost:5000/api/meals/`)
+       return this.http.get<Meals[]>(baseMealsUrl)
     }
    
    addMeal(meal: Meals): Observable<Meals> {
-    return this.http.post<Meals>('http://localhost:5000/api/meals', meal)
+    return this.http.post<Meals>(baseMealsUrl, meal)
    }
    
    updateMeal(meal: Meals): Observable<Meals> {
-        return this.http.patch<Meals>('http://localhost:5000/api/meals', meal)
+        return this.http.patch<Meals>(baseMealsUrl, meal)
    }
     updateMealAvailability(availability: Availability): Observable<Availability> {
-        return this.http.patch<Availability>('http://localhost:5000/api/meals/availability', availability)
+        return this.http.patch<Availability>(updateMealAvailability, availability)
    }
 
     deleteMeal(id: string | undefined): Observable<string> {
-       return this.http.delete<string>(`http://localhost:5000/api/meals/${id}`)
+       return this.http.delete<string>(`${baseMealsUrl}/${id}`)
     }
 }

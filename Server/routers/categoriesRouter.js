@@ -16,8 +16,8 @@ const validationMiddleware = require("../middleware/validationMiddleware");
 const router = new Router();
 
 
-router.get("/", getAvailableCategories);
-router.get("/available", getAllCategories);
+router.get("/", getAllCategories);
+router.get("/available", getAvailableCategories);
 router.get("/:id", getCategoryById);
 router.post("/", validationMiddleware(categoryCreateSchema), createCategory);
 router.patch("/", validationMiddleware(categoryUpdateSchema), updateCategory);

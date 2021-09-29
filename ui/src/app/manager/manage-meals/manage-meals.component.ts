@@ -19,10 +19,9 @@ export class ManageMealsComponent implements OnInit {
   showFormEdit: boolean = false;
   meal: Meals | undefined;
   id: string | undefined;
-  deleteId: string | undefined;
-  search: string = '';
   imgFile: string | undefined;
   mealAvail!: boolean;
+  search: string = '';
   
   
 
@@ -35,7 +34,7 @@ export class ManageMealsComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.maxLength(30)],
       this.validator.validate.bind(this.validator)),
       categoryId: new FormControl(),
-      file: new FormControl(''),
+      file: new FormControl('', [Validators.required]),
       img: new FormControl('', [Validators.required]),
       description: new FormControl(),
       weight: new FormControl('', [Validators.required, Validators.maxLength(5)]),
@@ -83,14 +82,8 @@ export class ManageMealsComponent implements OnInit {
         this.form.patchValue({
           img: reader.result
         });
-   
       };
     }
- }
-  
- hideEditForm() {
-   this.showFormEdit = false;
-  
  }
   
  
@@ -119,25 +112,14 @@ export class ManageMealsComponent implements OnInit {
     }
   }
 
-   deleteMeal(mealId: string | undefined) {
-     this.deleteId = mealId;
-      let meals: Meals[] = this.meals.filter((meal:Meals) => {
-          if (meal.id !== this.deleteId) {
-            return meal;
-          }
-          return;
-        })
-    this.mealsService.deleteMeal(this.deleteId)
-      .subscribe(() => {
-      this.mealsService.updateMeals(meals)
-      confirm("Do you want delete this meal?") ? alert("Meal deleted") : alert("Meal was not deleted");
-      });
-   }
+  hideEditForm() {
+   this.showFormEdit = false;
   
+ }
+
   submit() {
-  
-   if (!this.id) {
-     let meal: Meals = {
+   console.log(this.form)
+    let meal: Meals = {
        name: this.form.value.name,
        categoryId: this.form.value.categoryId,
        img: this.form.value.img,
@@ -146,6 +128,7 @@ export class ManageMealsComponent implements OnInit {
        price: this.form.value.price,
        availability: !!this.form.value.availability
      }
+   if (!this.id ) {
      this.mealsService.addMeal(meal)
        .subscribe(() => {
          this.mealsService.getAllMeals()
@@ -153,31 +136,36 @@ export class ManageMealsComponent implements OnInit {
              this.mealsService.updateMeals(meals);
            })
          this.form.reset();
+         alert('Meal added!')
        })
    } else {
-     let updateMeal: Meals = {
-       id: this.id,
-       name: this.form.value.name,
-       categoryId: this.form.value.categoryId,
-       img: this.form.value.img,
-       description: this.form.value.description,
-       weight: this.form.value.weight,
-       price: this.form.value.price,
-       availability: !!this.form.value.availability
-     }
+     let updateMeal: Meals = { id: this.id, ...meal };
      let updateMeals: Meals[] = this.meals.map((meal: Meals) => {
-       if (meal.id == this.id) {
-         meal = updateMeal;
-      }
-      return meal;
+       return meal.id === this.id ? meal = updateMeal : meal;
     })
-     console.log(updateMeals)
+
      this.mealsService.updateMeal(updateMeal)
        .subscribe(() => {
-          this.mealsService.updateMeals(updateMeals);
+         alert('Meal updated!');
+         this.mealsService.updateMeals(updateMeals);
         })
    }
-      this.form.reset();
-}
+    this.form.reset();
+    
+  }
+  
+   deleteMeal(mealId: string | undefined) {
+     let meals: Meals[] = this.meals.filter((meal: Meals) => meal.id !== mealId);
+     let result = confirm("Do you want delete this meal?");
+     if (result) {
+       this.mealsService.deleteMeal(mealId)
+         .subscribe(() => {
+           alert("Meal deleted")
+           this.mealsService.updateMeals(meals);
+         });
+     } else {
+       alert("Meal was not deleted");
+     }
+   }
 
 }

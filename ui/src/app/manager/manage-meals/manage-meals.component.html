@@ -19,11 +19,11 @@
     <input class="input-download" 
     type="file" accept="image/*"  
     formControlName="file" (change)="onImageChange($event)"
-    #input>
+    #input >
   </div>
   <button type="button" (click)="triggerClick()" class="btn-download"> 
     <img src="../../../assets/images/download.png" class="download-img"> 
-    <span> Download image</span>
+    <span> Download image<sup>*</sup></span>
   </button>
 
   <label for="name">Title<sup>*</sup></label>
@@ -85,8 +85,7 @@
       <th scope="col">Weight</th>
       <th scope="col">Price</th>
       <th scope="col">Availability</th>
-      <th scope="col">Delete</th>
-      <th scope="col">Edit</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -109,9 +108,8 @@
   <span class="slider round"></span>
 </label> 
       </td>
-      
-      <td data-label="Delete"><button class="btn edit-btn" (click)="deleteMeal(meal.id)">delete</button></td>
-      <td data-label="Edit"><button class=" btn edit-btn" (click)="showEditForm(meal.id)">edit</button></td>
+      <td data-label="Delete"><button class="btn edit-btn" (click)="deleteMeal(meal.id)">delete</button>
+       <button class=" btn edit-btn" (click)="showEditForm(meal.id)">edit</button></td>
     </tr>
   </tbody>
 </table>

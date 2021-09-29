@@ -23,7 +23,7 @@ export class MealsListComponent implements OnInit {
         this.route.params.subscribe((params: Params) => {
             if (!params.id) {
                 console.log(params.id)
-                this.categoryService.getAllCategories()
+                this.categoryService.getAvailableCategories()
                     .subscribe(categories => {
                         this.firstCategory = categories[0];
                         this.mealsService.getAllMealsByCategory(this.firstCategory.id)

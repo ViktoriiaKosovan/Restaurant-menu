@@ -6,7 +6,6 @@ import { CategoryComponent } from './client/category/category.component';
 import { AppComponent } from './app.component';
 import { MealsListComponent } from './client/meals-list/meals-list.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FooterComponent } from './client/footer/footer.component';
 import { ManageComponent } from './manager/manage-header/manage-header.component';
 import { ClientLayoutComponent } from './shared/layouts/client-layout/client-layout.component';
 import { ManagerLayoutComponent } from './shared/layouts/manager-layout/manager-layout.component';
@@ -15,6 +14,7 @@ import { ManageMealsComponent } from './manager/manage-meals/manage-meals.compon
 import { ManageInfoComponent } from './manager/manage-info/manage-info.component';
 import { FilterPipeCategory } from './pipes/filterCategory.pipe';
 import { FilterPipeMeal } from './pipes/filterMeal.pipe';
+import { InfoComponent } from './client/info/info.component';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { FilterPipeMeal } from './pipes/filterMeal.pipe';
     AppComponent,
     CategoryComponent,
     MealsListComponent,
-    FooterComponent,
+    InfoComponent,
     ManageComponent,
     ClientLayoutComponent,
     ManagerLayoutComponent,

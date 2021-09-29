@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Info, InfoService } from '../../services/info.service';
 
 @Component({
-    selector: "app-footer",
-    templateUrl: "./footer.component.html",
-    styleUrls: ["./footer.component.css"]
+    selector: "app-info",
+    templateUrl: "./info.component.html",
+    styleUrls: ["./info.component.css"]
     
 })
-export class FooterComponent implements OnInit {
+export class InfoComponent implements OnInit {
     info: Info[] = [];
     constructor(private infoService: InfoService) { }
     ngOnInit() {

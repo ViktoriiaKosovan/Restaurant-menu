@@ -12,7 +12,7 @@
                 
 		<ul class="categories-list">
                 <!-- <li *ngIf="menuToggle" (click)="menuToggle=!menuToggle"><img src="../../../assets/images/cross.png" alt="exit" class="exit-img"></li> -->
-				<li class="category_item" *ngFor="let category of categories"><a [routerLink]="['/', category.id]" (click)="menuToggle=!menuToggle">{{category.title}}</a></li>
+				<li routerLinkActive="active" class="category_item" *ngFor="let category of categories"><a [routerLink]="['/', category.id]" (click)="menuToggle=!menuToggle">{{category.title}}</a></li>
 			</ul>
             
 		</nav>

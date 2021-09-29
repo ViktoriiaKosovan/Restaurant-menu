@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './client/category/category.component';
-import { HeaderComponent } from './client/header/header.component';
 import { AppComponent } from './app.component';
 import { MealsListComponent } from './client/meals-list/meals-list.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +20,6 @@ import { FilterPipeMeal } from './pipes/filterMeal.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     CategoryComponent,
     MealsListComponent,
     FooterComponent,

@@ -96,7 +96,12 @@ export class ManageMealsComponent implements OnInit {
     this.deleteId = mealId;
     this.mealsService.deleteMeal(this.deleteId)
       .subscribe(() => {
-        alert("Meal deleted")
+        let result = confirm("Do you want delete this meal?")
+        if (result) {
+          alert("Meal deleted")
+        } else {
+          alert("Meal was not deleted")
+        }
       });
   }
   showEditForm(mealId: string | undefined): void {

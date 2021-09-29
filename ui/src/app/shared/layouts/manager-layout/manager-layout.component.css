@@ -91,26 +91,12 @@ input:checked+.slider:before {
   height: 130px;
 }
 
-.select-container {
-  width: 80%;
+select{
   border-radius: 10px;
-  border: 1px solid rgb(77, 76, 76);
-  background: #fafafa;
+  width: 200px;
+  height: 25px;
 }
 
-.select-container select {
-  padding: 5px 8px;
-  width: 110%;
-  border: none;
-  background: transparent;
-  -webkit-appearance: none;
-}
-
-.select-container select:focus {
-  outline: none;
-}
-
-/* similar */
 .container {
   display: flex;
   flex-direction: column;
@@ -199,7 +185,7 @@ input:checked+.slider:before {
   display: block;
   width: 90%;
   padding: 5px;
-  margin: 5px auto;
+  margin: 0 auto;
   border-radius: 10px;
   border: 1px solid rgb(77, 76, 76);
   transition: .3s border-color;

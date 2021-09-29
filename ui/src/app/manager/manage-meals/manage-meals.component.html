@@ -37,7 +37,7 @@
   <label for="select">Select category for meal<sup>*</sup></label>
   <div class="select-container">
    <select id="select" placeholder="Enter meal mane" formControlName="categoryId" >
-       <option *ngFor="let category of categories"  [ngValue]="category.id" [selected]>{{category.title}}</option>
+       <option *ngFor="let category of categories"  [ngValue]="category.id" >{{category.title}}</option>
    </select>
    </div>
 

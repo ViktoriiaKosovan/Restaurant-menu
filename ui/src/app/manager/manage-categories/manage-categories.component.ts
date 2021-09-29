@@ -42,7 +42,6 @@ export class ManageCategoriesComponent implements OnInit {
 toggleAvailability(categoryId: string | undefined, categoryAvail: boolean ) {
     this.id = categoryId;
     this.categoryAvail=categoryAvail
-    console.log(this.id, this.categoryAvail)
     this.categoriesService.updateCategoryAvailability({ id: this.id, availability: !this.categoryAvail }).subscribe(() => {
        this.categoriesService.getAllCategories()
            .subscribe(categories => {
@@ -73,7 +72,7 @@ toggleAvailability(categoryId: string | undefined, categoryAvail: boolean ) {
   }
 
   submit() {
-   console.log(this.form)
+  
     if (!this.id) {
       let category: Category = {
         title: this.form.value.title,

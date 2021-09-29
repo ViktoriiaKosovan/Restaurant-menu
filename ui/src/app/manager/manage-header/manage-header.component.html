@@ -9,9 +9,9 @@
             [ngClass]="{
                 show: menuToggle, 
                 hide:!menuToggle}">
-				<li class="edit-list_item" ><a [routerLink]="['categories']">Categories</a></li>
-                <li class="edit-list_item" ><a  [routerLink]="['meals']">Meals</a></li>
-                <li class="edit-list_item" ><a a  [routerLink]="['info']">Info</a></li>
+				<li routerLinkActive="active" class="edit-list_item" ><a [routerLink]="['categories']">Categories</a></li>
+                <li routerLinkActive="active" class="edit-list_item" ><a  [routerLink]="['meals']">Meals</a></li>
+                <li routerLinkActive="active" class="edit-list_item" ><a  [routerLink]="['info']">Info</a></li>
 			</ul>
 		</nav>
        

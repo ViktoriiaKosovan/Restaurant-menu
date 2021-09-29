@@ -1,4 +1,3 @@
-
 import { Meals, MealsService } from './../../services/meals.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,7 +15,7 @@ export class ManageMealsComponent implements OnInit {
   inputRef!: ElementRef;
   form!: FormGroup;
   categories: Category[] = [];
-  meals: Meals[] = [];
+  meals: Meals[] | any = [];
   showFormEdit: boolean = false;
   meal: Meals | undefined;
   id: string | undefined;
@@ -49,9 +48,9 @@ export class ManageMealsComponent implements OnInit {
           this.categories = categories;
             })
   
-     this.mealsService.getAllMeals()
+     this.mealsService.getMeals()
        .subscribe(meals => {
-          this.meals = meals;
+         this.meals = meals;
             })
   }
 
@@ -59,16 +58,18 @@ export class ManageMealsComponent implements OnInit {
     this.inputRef.nativeElement.click();
   }
 
-  toggleAvailability(mealId: string | undefined, mealAvail: boolean ) {
+  toggleAvailability(mealId: string | undefined, mealAvail: boolean) {
     this.id = mealId;
-    this.mealAvail=mealAvail
-    console.log(this.id, this.mealAvail)
-    this.mealsService.updateMealAvailability({ id: this.id, availability: !this.mealAvail }).subscribe(() => {
-       this.mealsService.getAllMeals()
-           .subscribe(meals => {
-             this.meals = meals;
-           })
+    this.mealAvail = mealAvail;
+    let newMeals: Meals[] = this.meals.map((meal: Meals) => {
+      if (meal.id == this.id) {
+        meal.availability = !this.mealAvail
+      }
+      return meal;
     })
+    this.mealsService.updateMealAvailability({ id: this.id, availability: !this.mealAvail }).subscribe(() => {
+    this.mealsService.updateMeals(newMeals)
+     })
   }
  
 
@@ -92,18 +93,7 @@ export class ManageMealsComponent implements OnInit {
   
  }
   
-  deleteMeal(mealId: string | undefined) {
-    this.deleteId = mealId;
-    this.mealsService.deleteMeal(this.deleteId)
-      .subscribe(() => {
-        let result = confirm("Do you want delete this meal?")
-        if (result) {
-          alert("Meal deleted")
-        } else {
-          alert("Meal was not deleted")
-        }
-      });
-  }
+ 
   showEditForm(mealId: string | undefined): void {
      this.id = mealId;
     if (this.id) {
@@ -128,8 +118,24 @@ export class ManageMealsComponent implements OnInit {
       this.form.reset();
     }
   }
+
+   deleteMeal(mealId: string | undefined) {
+     this.deleteId = mealId;
+      let meals: Meals[] = this.meals.filter((meal:Meals) => {
+          if (meal.id !== this.deleteId) {
+            return meal;
+          }
+          return;
+        })
+    this.mealsService.deleteMeal(this.deleteId)
+      .subscribe(() => {
+      this.mealsService.updateMeals(meals)
+      confirm("Do you want delete this meal?") ? alert("Meal deleted") : alert("Meal was not deleted");
+      });
+   }
+  
   submit() {
-   console.log(this.form.value);
+  
    if (!this.id) {
      let meal: Meals = {
        name: this.form.value.name,
@@ -144,13 +150,13 @@ export class ManageMealsComponent implements OnInit {
        .subscribe(() => {
          this.mealsService.getAllMeals()
            .subscribe(meals => {
-             this.meals = meals;
+             this.mealsService.updateMeals(meals);
            })
          this.form.reset();
        })
    } else {
-     let meal: Meals = {
-      id: this.id,
+     let updateMeal: Meals = {
+       id: this.id,
        name: this.form.value.name,
        categoryId: this.form.value.categoryId,
        img: this.form.value.img,
@@ -159,12 +165,16 @@ export class ManageMealsComponent implements OnInit {
        price: this.form.value.price,
        availability: !!this.form.value.availability
      }
-     this.mealsService.updateMeal(meal)
+     let updateMeals: Meals[] = this.meals.map((meal: Meals) => {
+       if (meal.id == this.id) {
+         meal = updateMeal;
+      }
+      return meal;
+    })
+     console.log(updateMeals)
+     this.mealsService.updateMeal(updateMeal)
        .subscribe(() => {
-          this.mealsService.getAllMeals()
-            .subscribe(meals => {
-              this.meals = meals;
-            })
+          this.mealsService.updateMeals(updateMeals);
         })
    }
       this.form.reset();

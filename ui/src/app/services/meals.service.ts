@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
+import { Category } from "./categories.service";
 
 export interface Meals {
     id?: string,
@@ -21,7 +22,31 @@ export interface Availability {
 
 @Injectable({providedIn: "root"})
 export class MealsService {
-    constructor(private http: HttpClient) { }
+
+   private _meals = new BehaviorSubject<Meals[]>([]);
+   
+   
+
+   constructor(private http: HttpClient) {
+      this.getAllMealsInitialize();
+   }
+   
+    private getAllMealsInitialize(): void {
+    this.http.get<Meals[]>(`http://localhost:5000/api/meals/`)
+      .subscribe((data: Meals[]) => {
+        this._meals.next(data);
+      });
+    }
+   
+   getMeals() {
+      return this._meals;
+   }
+
+   updateMeals(data:Meals[]) {
+       this._meals.next(data)
+   }
+
+
     getMealById(id: string | undefined): Observable<Meals> {
        return this.http.get<Meals>(`http://localhost:5000/api/meals/${id}`)
     }
@@ -32,6 +57,7 @@ export class MealsService {
     getAllMeals(): Observable<Meals[]> {
        return this.http.get<Meals[]>(`http://localhost:5000/api/meals/`)
     }
+   
    addMeal(meal: Meals): Observable<Meals> {
     return this.http.post<Meals>('http://localhost:5000/api/meals', meal)
    }

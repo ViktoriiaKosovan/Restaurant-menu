@@ -11,7 +11,7 @@ import { Injectable } from "@angular/core";
 export class exitingMealNameValidator implements AsyncValidator{
   constructor(private mealsService: MealsService) {}
   validate (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return this.mealsService.getAllMeals().pipe(
+    return this.mealsService.getMeals().pipe(
       map(meals => {
         const meal=meals.find(meal=>meal.name.toLowerCase()==control.value.toLowerCase())
          return meal ? { titleExists: true }:null

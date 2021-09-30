@@ -13,3 +13,4 @@ export class ManagerLayoutComponent implements OnInit {
   }
 
 }
+

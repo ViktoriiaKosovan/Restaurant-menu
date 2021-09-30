@@ -1,6 +1,6 @@
 <section class="container">
 <div class="btn-container">
- <button class="btn" (click)="showEditForm(undefined)">Add meal</button>
+ <button class="btn" (click)="showEditForm()">Add meal</button>
 </div>
 
  <div class="popup-holder" [ngClass]="{show: showFormEdit, hide: !showFormEdit}" >
@@ -25,6 +25,10 @@
     <img src="../../../assets/images/download.png" class="download-img"> 
     <span> Download image<sup>*</sup></span>
   </button>
+ <div *ngIf="form.touched && form.invalid"  class="validation">
+<small 
+>img field is required</small>
+</div>
 
   <label for="name">Title<sup>*</sup></label>
   <input id="name" class="text-input" type="text" placeholder="Enter meal name" formControlName="name">
@@ -37,7 +41,7 @@
 
   <label for="select">Select category for meal<sup>*</sup></label>
   <div class="select-container">
-   <select id="select" placeholder="Enter meal mane" formControlName="categoryId" [(ngModel)]="categories[0].id" >
+   <select id="select" placeholder="Enter meal mane" formControlName="categoryId"  >
        <option [ngValue]="category.id" *ngFor="let category of categories">{{category.title}}</option>
    </select>
    </div>
@@ -76,8 +80,6 @@
      </div>
 </div>
   
-
-
 <input class="search-input" type="text" [(ngModel)]="search " placeholder="Search meal..."> 
 <table>
   <thead>

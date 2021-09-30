@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
@@ -29,7 +28,7 @@ export class ManageCategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(30), emptyStringValidator()], this.validator.validate.bind(this.validator)),
+      title: new FormControl('', [Validators.required, Validators.maxLength(30), emptyStringValidator()]),
       availability: new FormControl()
     });
    
@@ -73,40 +72,37 @@ toggleAvailability(categoryId: string | undefined, categoryAvail: boolean ) {
   }
 
   submit() {
-  console.log(this.form)
-    if (!this.id) {
-      let category: Category = {
-        title: this.form.value.title,
+   
+  let category: Category = {
+        title: this.form.value.title.toUpperCase(),
         availability: !!this.form.value.availability
       }
+    if (!this.id) {
       this.categoriesService.addCategory(category)
         .subscribe(() => {
           this.categoriesService.getAllCategories()
             .subscribe(categories => {
               this.categories = categories;
             })
-          
-        }, (error) => {                              
-      console.error('error caught in component')
-      this.errorMessage = error;
-      console.log(this.errorMessage);
-      this.form.controls['title'].setErrors({ 'incorrect': true });
-      console.log(this.form)
-      this.loading = false;
+        }, (err) => {                              
+          if  (err) alert(err.error.message);
+            this.showEditForm()
     })
     } else {
-      let category: Category = {
+      let updateItem: Category = {
         id: this.id,
-        title: this.form.value.title,
-        availability: !!this.form.value.availability
+        ...category
       }
-      this.categoriesService.updateCategory(category)
+      this.categoriesService.updateCategory(updateItem)
         .subscribe(() => {
           this.categoriesService.getAllCategories()
             .subscribe(categories => {
               this.categories = categories;
             })
-        })
+        }, (err) => {                              
+          if  (err) alert(err.error.message);
+            this.showEditForm(this.id)
+    })
     }
     this.form.reset();
   }

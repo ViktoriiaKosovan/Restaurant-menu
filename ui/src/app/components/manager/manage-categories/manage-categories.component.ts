@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoriesService, Category } from 'src/app/services/categories.service';
+import { CategoriesService} from 'src/app/services/categories.service';
+import { Category } from 'src/app/shared/layouts/interfaces/categoriesInterfaces';
 import { emptyStringValidator } from 'src/app/validators/emptyStringValidator';
 
 @Component({
   selector: 'app-manage-categories',
   templateUrl: './manage-categories.component.html',
-  styleUrls: ['../../shared/layouts/manager-layout/manager-layout.component.css']
+  styleUrls: ['../../../shared/layouts/manager-layout/manager-layout.component.css']
 })
   
   

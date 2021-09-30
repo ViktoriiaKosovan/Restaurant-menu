@@ -1,17 +1,16 @@
-import { Meals, MealsService } from "./../../services/meals.service";
+import { MealsService } from "../../../services/meals.service";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {
-  CategoriesService,
-  Category,
-} from "src/app/services/categories.service";
+import { CategoriesService } from "src/app/services/categories.service";
 import { emptyStringValidator } from "src/app/validators/emptyStringValidator";
+import { Category } from "src/app/shared/layouts/interfaces/categoriesInterfaces";
+import { Meals } from "src/app/shared/layouts/interfaces/mealsInterfaces";
 
 @Component({
   selector: "app-manage-meals",
   templateUrl: "./manage-meals.component.html",
   styleUrls: [
-    "../../shared/layouts/manager-layout/manager-layout.component.css",
+    "../../../shared/layouts/manager-layout/manager-layout.component.css",
   ],
 })
   

@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Category } from '../services/categories.service';
+import { Category } from '../shared/layouts/interfaces/categoriesInterfaces';
+
 
 @Pipe({
   name: 'filter'

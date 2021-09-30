@@ -1,5 +1,5 @@
-import { Meals } from 'src/app/services/meals.service';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Meals } from '../shared/layouts/interfaces/mealsInterfaces';
 
 
 @Pipe({

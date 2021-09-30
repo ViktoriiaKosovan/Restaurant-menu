@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, CategoriesService } from '../../services/categories.service';
-
-
+import { Category } from 'src/app/shared/layouts/interfaces/categoriesInterfaces';
+import {CategoriesService } from '../../../services/categories.service';
 
 @Component({
     selector: "app-category",

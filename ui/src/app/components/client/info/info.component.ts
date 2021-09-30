@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Info, InfoService } from '../../services/info.service';
+import { Info } from 'src/app/shared/layouts/interfaces/infoInterface';
+import { InfoService } from '../../../services/info.service';
 
 @Component({
     selector: "app-info",
@@ -14,7 +15,7 @@ export class InfoComponent implements OnInit {
         this.infoService.getInfo()
             .subscribe(info => {
                 this.info = info;
-               
+        
             })
     }
  }

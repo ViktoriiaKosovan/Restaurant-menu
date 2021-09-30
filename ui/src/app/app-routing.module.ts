@@ -2,10 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ManagerLayoutComponent } from './shared/layouts/manager-layout/manager-layout.component';
 import { ClientLayoutComponent } from './shared/layouts/client-layout/client-layout.component';
-import { MealsListComponent } from "./client/meals-list/meals-list.component";
-import { ManageCategoriesComponent } from './manager/manage-categories/manage-categories.component';
-import { ManageMealsComponent } from './manager/manage-meals/manage-meals.component';
-import { ManageInfoComponent } from './manager/manage-info/manage-info.component';
+import { MealsListComponent } from "./components/client/meals-list/meals-list.component";
+import { ManageCategoriesComponent } from './components/manager/manage-categories/manage-categories.component';
+import { ManageMealsComponent } from './components/manager/manage-meals/manage-meals.component';
+import { ManageInfoComponent } from './components/manager/manage-info/manage-info.component';
 
 
 const routes: Routes = [

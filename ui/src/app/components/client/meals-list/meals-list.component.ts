@@ -1,7 +1,8 @@
-import { CategoriesService } from '../../services/categories.service';
+import { CategoriesService } from '../../../services/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Meals,MealsService } from '../../services/meals.service';
+import {MealsService } from '../../../services/meals.service';
+import { Meals } from 'src/app/shared/layouts/interfaces/mealsInterfaces';
 
 
 @Component({

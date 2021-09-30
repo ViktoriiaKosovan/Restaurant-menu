@@ -2,13 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import baseInfoUrl from "../constants/infoApiUrl";
+import { Info } from "../shared/layouts/interfaces/infoInterface";
 
-export interface Info {
-    id?: string,
-    address: string,
-    contacts: string,
-    wiFi: string
-}
+
 
 @Injectable({ providedIn: "root" })
     

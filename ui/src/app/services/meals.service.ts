@@ -2,22 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { baseMealsUrl, getMealsByCategory, updateMealAvailability } from "../constants/mealsApiUrls";
+import { Availability } from "../shared/layouts/interfaces/availabilityInterface";
+import { Meals } from "../shared/layouts/interfaces/mealsInterfaces";
 
-export interface Meals {
-    id?: string,
-    img: string,
-    name:  string,
-    description: string,
-    weight: string,
-    price: string,
-   availability: boolean,
-   categoryId?: string
-}
-export interface Availability {
-    id?: string,
-   availability: boolean,
- 
-}
 
 
 @Injectable({providedIn: "root"})

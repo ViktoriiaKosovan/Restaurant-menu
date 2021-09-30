@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Info, InfoService } from 'src/app/services/info.service';
+import { InfoService } from 'src/app/services/info.service';
+import { Info } from 'src/app/shared/layouts/interfaces/infoInterface';
 import { emptyStringValidator } from 'src/app/validators/emptyStringValidator';
 
 @Component({
   selector: 'app-manage-info',
   templateUrl: './manage-info.component.html',
-  styleUrls: ['../../shared/layouts/manager-layout/manager-layout.component.css']
+  styleUrls: ['../../../shared/layouts/manager-layout/manager-layout.component.css']
 })
 export class ManageInfoComponent implements OnInit {
 

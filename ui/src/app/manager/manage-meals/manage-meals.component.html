@@ -25,7 +25,7 @@
     <img src="../../../assets/images/download.png" class="download-img"> 
     <span> Download image<sup>*</sup></span>
   </button>
- <div *ngIf="form.touched && form.invalid"  class="validation">
+ <div *ngIf="form.controls.img.invalid"  class="validation">
 <small 
 >img field is required</small>
 </div>
@@ -41,7 +41,7 @@
 
   <label for="select">Select category for meal<sup>*</sup></label>
   <div class="select-container">
-   <select id="select" placeholder="Enter meal mane" formControlName="categoryId"  >
+   <select id="select" placeholder="Enter meal name" formControlName="categoryId"  >
        <option [ngValue]="category.id" *ngFor="let category of categories">{{category.title}}</option>
    </select>
    </div>

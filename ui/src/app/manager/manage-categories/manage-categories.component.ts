@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
-import { exitingCategoryNameValidator } from 'src/app/validators/categoriesValidator';
 import { emptyStringValidator } from 'src/app/validators/emptyStringValidator';
 
 @Component({
@@ -24,7 +23,7 @@ export class ManageCategoriesComponent implements OnInit {
   categoryAvail!: boolean;
 
 
-  constructor(private categoriesService: CategoriesService, private validator: exitingCategoryNameValidator) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit() {
     this.form = new FormGroup({

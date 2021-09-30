@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
 import { exitingCategoryNameValidator } from 'src/app/validators/categoriesValidator';
+import { emptyStringValidator } from 'src/app/validators/emptyStringValidator';
 
 @Component({
   selector: 'app-manage-categories',
@@ -28,7 +29,7 @@ export class ManageCategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(30)], this.validator.validate.bind(this.validator)),
+      title: new FormControl('', [Validators.required, Validators.maxLength(30), emptyStringValidator()], this.validator.validate.bind(this.validator)),
       availability: new FormControl()
     });
    
@@ -72,7 +73,7 @@ toggleAvailability(categoryId: string | undefined, categoryAvail: boolean ) {
   }
 
   submit() {
-  
+  console.log(this.form)
     if (!this.id) {
       let category: Category = {
         title: this.form.value.title,

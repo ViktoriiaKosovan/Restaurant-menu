@@ -13,9 +13,10 @@
     <input id="title" class="text-input" type="text"   placeholder="Enter category title" formControlName="title" minlength="3">
 
     <div *ngIf="form.controls.title.touched && form.controls.title.invalid"  class="validation">
-        <small *ngIf="form.controls.title.errors?.required">Title field is required</small>
-        <small *ngIf="form.controls.title.errors?.maxlength">Title field length should be less than 30 symbols</small>
-        <small *ngIf="form.controls.title.errors?.titleExists">Title field should be unique</small>
+        <small *ngIf="form.controls.title.errors?.required">title field is required</small>
+        <small *ngIf="form.controls.title.errors?.maxlength">title field length should be less than 30 symbols</small>
+        <small *ngIf="form.controls.title.errors?.titleExists">title field should be unique</small>
+        <small *ngIf="form.controls.title.errors?.emptyString">title can not be empty</small>
   </div>
   
  <input class="checkbox-input" type="checkbox" id="availability" formControlName="availability"> 

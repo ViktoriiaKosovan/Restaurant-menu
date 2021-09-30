@@ -7,22 +7,25 @@
 <label for="address">Address<sup>*</sup></label>
   <input id="address" class="text-input" type="text"   placeholder="Enter address" formControlName="address">
    <div *ngIf="form.controls.address.touched && form.controls.address.invalid"  class="validation">
-<small *ngIf="form.controls.address.errors?.required">Address field is required</small>
-<small *ngIf="form.controls.address.errors?.maxlength">Address field length should be less than 70 symbols</small>
+<small *ngIf="form.controls.address.errors?.required">address field is required</small>
+<small *ngIf="form.controls.address.errors?.maxlength">address field length should be less than 70 symbols</small>
+ <small *ngIf="form.controls.address.errors?.emptyString">address can not be empty field</small>
 
   </div>
 <label for="contacts">Contacts<sup>*</sup></label>
  <input id="contacts" class="text-input" type="text"   placeholder="Enter contacts" formControlName="contacts">
   <div *ngIf="form.controls.contacts.touched && form.controls.contacts.invalid"  class="validation">
-<small *ngIf="form.controls.contacts.errors?.required">Contacts field is required</small>
-<small *ngIf="form.controls.contacts.errors?.maxlength">Contacts field length should be less than 30 symbols</small>
+<small *ngIf="form.controls.contacts.errors?.required">contacts field is required</small>
+<small *ngIf="form.controls.contacts.errors?.maxlength">contacts field length should be less than 30 symbols</small>
+<small *ngIf="form.controls.contacts.errors?.emptyString">contacts can not be empty field</small>
   </div>
 
   <label for="wiFi">WiFi<sup>*</sup></label>
  <input id="wiFi" type="text" class="text-input"  placeholder="Enter wiFi" formControlName="wiFi">
  <div *ngIf="form.controls.wiFi.touched && form.controls.wiFi.invalid"  class="validation">
-<small *ngIf="form.controls.wiFi.errors?.required">WiFi field is required</small>
-<small *ngIf="form.controls.wiFi.errors?.maxlength">WiFi field length should be less than 20 symbols</small>
+<small *ngIf="form.controls.wiFi.errors?.required">wiFi field is required</small>
+<small *ngIf="form.controls.wiFi.errors?.maxlength">wiFi field length should be less than 20 symbols</small>
+<small *ngIf="form.controls.wiFi.errors?.emptyString">wiFi can not be empty field</small>
   </div>
 
   <div class="form-button"> 

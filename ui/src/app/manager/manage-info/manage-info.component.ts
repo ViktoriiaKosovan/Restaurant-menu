@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Info, InfoService } from 'src/app/services/info.service';
+import { emptyStringValidator } from 'src/app/validators/emptyStringValidator';
 
 @Component({
   selector: 'app-manage-info',
@@ -17,9 +18,9 @@ export class ManageInfoComponent implements OnInit {
   
   constructor(private infoService: InfoService) {
     this.form = new FormGroup({
-      address: new FormControl('', [Validators.required, Validators.maxLength(70)]),
-      contacts: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-      wiFi: new FormControl('', [Validators.required, Validators.maxLength(20)])
+      address: new FormControl('', [Validators.required, Validators.maxLength(70),  emptyStringValidator()]),
+      contacts: new FormControl('', [Validators.required, Validators.maxLength(30),  emptyStringValidator()]),
+      wiFi: new FormControl('', [Validators.required, Validators.maxLength(20),  emptyStringValidator()])
   });
   }
 

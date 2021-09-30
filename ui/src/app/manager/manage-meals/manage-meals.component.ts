@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService, Category } from 'src/app/services/categories.service';
 import { exitingMealNameValidator } from 'src/app/validators/mealValidator';
+import { emptyStringValidator } from 'src/app/validators/emptyStringValidator';
 
 @Component({
   selector: 'app-manage-meals',
@@ -31,14 +32,14 @@ export class ManageMealsComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(30)],
+      name: new FormControl('', [Validators.required, Validators.maxLength(30), emptyStringValidator()],
       this.validator.validate.bind(this.validator)),
-      categoryId: new FormControl(),
-      file: new FormControl('', [Validators.required]),
-      img: new FormControl('', [Validators.required]),
+      categoryId: new FormControl('', [Validators.required]),
+      file: new FormControl(),
+      img: new FormControl('', [Validators.required, emptyStringValidator()]),
       description: new FormControl(),
-      weight: new FormControl('', [Validators.required, Validators.maxLength(5)]),
-      price: new FormControl('', [Validators.required, Validators.maxLength(5)]),
+      weight: new FormControl('', [Validators.required, Validators.maxLength(5), emptyStringValidator()]),
+      price: new FormControl('', [Validators.required, Validators.maxLength(5), emptyStringValidator()]),
       availability: new FormControl()
   });
 

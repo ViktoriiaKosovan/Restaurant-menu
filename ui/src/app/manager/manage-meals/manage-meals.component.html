@@ -29,18 +29,18 @@
   <label for="name">Title<sup>*</sup></label>
   <input id="name" class="text-input" type="text" placeholder="Enter meal name" formControlName="name">
   <div *ngIf="form.controls.name.touched && form.controls.name.invalid"  class="validation">
-<small *ngIf="form.controls.name.errors?.required">Name field is required</small>
-<small *ngIf="form.controls.name.errors?.maxlength">Name field length should be less than 30 symbols</small>
-<small *ngIf="form.controls.name.errors?.titleExists">Name field should be unique</small>
+<small *ngIf="form.controls.name.errors?.required">name field is required</small>
+<small *ngIf="form.controls.name.errors?.maxlength">name field length should be less than 30 symbols</small>
+<small *ngIf="form.controls.name.errors?.titleExists">name field should be unique</small>
+ <small *ngIf="form.controls.name.errors?.emptyString">name can not be empty field</small>
   </div>
 
   <label for="select">Select category for meal<sup>*</sup></label>
   <div class="select-container">
-   <select id="select" placeholder="Enter meal mane" formControlName="categoryId" >
-       <option *ngFor="let category of categories"  [ngValue]="category.id" >{{category.title}}</option>
+   <select id="select" placeholder="Enter meal mane" formControlName="categoryId" [(ngModel)]="categories[0].id" >
+       <option [ngValue]="category.id" *ngFor="let category of categories">{{category.title}}</option>
    </select>
    </div>
-
   
 <label for="description">Description</label>
   <textarea id="description" class="text-input"  type="text"   placeholder="Enter meal description" formControlName="description"></textarea>
@@ -48,22 +48,24 @@
 <label for="weight">Weight<sup>*</sup></label>
   <input id="weight" class="text-input"  type="text" placeholder="Enter meal weight" formControlName="weight">
   <div *ngIf="form.controls.weight.touched && form.controls.weight.invalid"  class="validation">
-<small *ngIf="form.controls.weight.errors?.required">Weight field is required</small>
-<small *ngIf="form.controls.weight.errors?.maxlength">Weight field length should be less than 5 symbols</small>
+<small *ngIf="form.controls.weight.errors?.required">weight field is required</small>
+<small *ngIf="form.controls.weight.errors?.maxlength">weight field length should be less than 5 symbols</small>
+ <small *ngIf="form.controls.weight.errors?.emptyString">weight can not be empty field</small>
   </div>
 
   <label for="price">Price<sup>*</sup></label>
   <input id="price" class="text-input"  type="text"   placeholder="Enter meal price" formControlName="price">
   <div *ngIf="form.controls.price.touched && form.controls.price.invalid"  class="validation">
-<small *ngIf="form.controls.price.errors?.required">Price field is required</small>
-<small *ngIf="form.controls.price.errors?.maxlength">Price field length should be less than 5 symbols</small>
+<small *ngIf="form.controls.price.errors?.required">price field is required</small>
+<small *ngIf="form.controls.price.errors?.maxlength">price field length should be less than 5 symbols</small>
+<small *ngIf="form.controls.price.errors?.emptyString">price can not be empty field</small>
   </div>
 
   <input class="checkbox-input" type="checkbox" id="availability" formControlName="availability" > 
    <label for="availability"> Availability</label>
 
  <div class="form-button"> 
-   <button class="btn sbm-btn" type="submit" (click)="hideEditForm()" [disabled]="form.invalid && form.touched">
+   <button class="btn sbm-btn" type="submit" (click)="hideEditForm()" [disabled]="form.invalid">
      <span>Save</span>
     </button>
     <button class="btn sbm-btn" type="button" (click)="hideEditForm()">
